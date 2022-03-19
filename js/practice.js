@@ -28,12 +28,20 @@ class Practice {
                 this.forms = json["metadata"]["forms"];
                 this.infoField = json["metadata"]["info"];
 
-                const checkInputHandler = () => { this.handleInput() };
-                byId(ID_CHECK).addEventListener("click", checkInputHandler);
-                byId(ID_NEXT).addEventListener("click", () => { this.startRound() });
-
+                this.setEventListeners();
                 this.startRound();
             });
+    }
+
+    setEventListeners() {
+        const checkInputHandler = () => { this.handleInput() };
+        byId(ID_CHECK).addEventListener("click", checkInputHandler);
+        byId(ID_NEXT).addEventListener("click", () => { this.startRound() });
+        byId(ID_INPUT).addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                byId(ID_CHECK).click();
+            }
+        });
     }
 
     randomInt(lowerThan) {
@@ -81,6 +89,8 @@ class Practice {
         byId(ID_INPUT).setAttribute("readonly", true);
         byId(ID_NEXT).removeAttribute("hidden");
         byId(ID_CHECK).setAttribute("hidden", true);
+
+        byId(ID_NEXT).focus();
     }
 
     fillWordData(wordData, givenForm, wantedForm) {
