@@ -2,11 +2,16 @@
 const DATA_LOCATION = "/data/";
 
 const ID_WORD = "id_word";
+const ID_EXPECTED_WORD = "id_expected_word";
 const ID_GIVEN_FORM = "id_given_form";
 const ID_WANTED_FORM = "id_wanted_form";
 const ID_INFO = "id_info";
 const ID_CHECK = "id_check";
+const ID_NEXT = "id_next";
 const ID_INPUT = "id_input";
+
+const ID_SUCCESS = "id_success";
+const ID_FAILURE = "id_failure";
 
 function byId(id) { return document.getElementById(id); }
 
@@ -23,8 +28,9 @@ class Practice {
                 this.forms = json["metadata"]["forms"];
                 this.infoField = json["metadata"]["info"];
 
-                const checkInputHandler = (() => { this.handleInput() });
+                const checkInputHandler = () => { this.handleInput() };
                 byId(ID_CHECK).addEventListener("click", checkInputHandler);
+                byId(ID_NEXT).addEventListener("click", () => { this.startRound() });
 
                 this.startRound();
             });
@@ -61,22 +67,38 @@ class Practice {
     handleInput() {
         const word = byId(ID_INPUT).value;
 
-        if(word.toLowerCase() === this.wantedWord.toLowerCase()) {
-            console.log("Good");
-        } else {
-            // TODO Display the correct word
-            console.log("Bad");
+        if(word == "") {
+            byId(ID_INPUT).focus();
+            return;
         }
 
-        this.startRound();
+        if(word.toLowerCase() === this.wantedWord.toLowerCase()) {
+            byId(ID_SUCCESS).removeAttribute("hidden");
+        } else {
+            byId(ID_FAILURE).removeAttribute("hidden");
+        }
+
+        byId(ID_INPUT).setAttribute("readonly", true);
+        byId(ID_NEXT).removeAttribute("hidden");
+        byId(ID_CHECK).setAttribute("hidden", true);
     }
 
     fillWordData(wordData, givenForm, wantedForm) {
         byId(ID_WORD).innerText = wordData[givenForm];
+        byId(ID_EXPECTED_WORD).innerText = wordData[wantedForm];
         byId(ID_GIVEN_FORM).innerText = givenForm;
-        byId(ID_WANTED_FORM).innerText = wantedForm;
         byId(ID_INFO).innerText = wordData[this.infoField];
         byId(ID_INPUT).value = "";
+        byId(ID_INPUT).placeholder = wantedForm;
+
+        byId(ID_SUCCESS).setAttribute("hidden", true);
+        byId(ID_FAILURE).setAttribute("hidden", true);
+
+        byId(ID_CHECK).removeAttribute("hidden");
+        byId(ID_NEXT).setAttribute("hidden", true);
+        byId(ID_INPUT).removeAttribute("readonly");
+
+        byId(ID_INPUT).focus();
     }
 }
 
