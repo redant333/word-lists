@@ -13,6 +13,9 @@ const ID_INPUT = "id_input";
 const ID_SUCCESS = "id_success";
 const ID_FAILURE = "id_failure";
 
+const ID_SUCCESS_COUNT = "id_success_count";
+const ID_FAILURE_COUNT = "id_failure_count";
+
 function byId(id) { return document.getElementById(id); }
 
 class Practice {
@@ -24,6 +27,8 @@ class Practice {
         fetch(this.dataFile)
             .then(data => {return data.json()})
             .then(json => {
+                this.successCount = 0;
+                this.failureCount = 0;
                 this.words = json["list"];
                 this.forms = json["metadata"]["forms"];
                 this.infoField = json["metadata"]["info"];
@@ -82,13 +87,18 @@ class Practice {
 
         if(word.toLowerCase() === this.wantedWord.toLowerCase()) {
             byId(ID_SUCCESS).removeAttribute("hidden");
+            this.successCount++;
         } else {
             byId(ID_FAILURE).removeAttribute("hidden");
+            this.failureCount++;
         }
 
         byId(ID_INPUT).setAttribute("readonly", true);
         byId(ID_NEXT).removeAttribute("hidden");
         byId(ID_CHECK).setAttribute("hidden", true);
+
+        byId(ID_SUCCESS_COUNT).innerText = this.successCount;
+        byId(ID_FAILURE_COUNT).innerText = this.failureCount;
 
         byId(ID_NEXT).focus();
     }
