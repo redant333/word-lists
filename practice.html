@@ -5,8 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice</title>
+
+    <script src="/js/practice.js"></script>
 </head>
 <body>
-TODO
+    <p>Word: <span id="id_word"></span></p>
+    <p>Given Form: <span id="id_given_form"></span></p>
+    <p>Wanted Form: <span id="id_wanted_form"></span></p>
+    <p>Info: <span id="id_info"></span></p>
+    <input type="text" id="id_input">
+    <button id="id_check">Check</button>
+    <script>
+        // TODO Handle situations when the string is not passed
+        new Practice(window.location.search.substring(1)).start();
+    </script>
 </body>
 </html>
