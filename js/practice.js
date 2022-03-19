@@ -107,6 +107,7 @@ class Practice {
         byId(ID_WORD).innerText = wordData[givenForm];
         byId(ID_EXPECTED_WORD).innerText = wordData[wantedForm];
         byId(ID_GIVEN_FORM).innerText = givenForm;
+        byId(ID_WANTED_FORM).innerText = wantedForm;
         byId(ID_INFO).innerText = wordData[this.infoField];
         byId(ID_INPUT).value = "";
         byId(ID_INPUT).placeholder = wantedForm;
