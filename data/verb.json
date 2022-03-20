@@ -1,10 +1,10 @@
 {
     "metadata": {
         "forms": ["infinitiv", "imperativ", "presens", "preterium", "supinum"],
-        "info": "eng"
+        "infos": ["eng"]
     },
     "list": [
-        {"eng":"accept","infinitiv":"acceptera","imperativ":"acceptera","presens":"accepterar","preterium":"accepterade","supinum":"accepterat"},
-        {"eng":"go, walk","infinitiv":"gå","imperativ":"gå","presens":"går","preterium":"gick","supinum":"gått"}
+        [["acceptera","acceptera","accepterar","accepterade","accepterat"],["accept"]],
+        [["gå","gå","går","gick","gått"],["go, walk"]]
     ]
 }

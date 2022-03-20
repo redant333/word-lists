@@ -65,9 +65,16 @@ class Practice {
 
         const wantedForm = this.forms[wantedFormIndex];
         const givenForm = this.forms[givenFormIndex];
-        const word = this.words[wordIndex];
+        // TODO This is ugly, reorganize the code
+        const word = this.words[wordIndex][0];
+        const wordData = {
+            [wantedForm]: word[wantedFormIndex],
+            [givenForm]: word[givenFormIndex]
+        }
 
-        return [word, wantedForm, givenForm];
+        console.log(wordData);
+
+        return [wordData, wantedForm, givenForm];
     }
 
     startRound() {
