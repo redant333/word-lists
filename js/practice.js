@@ -1,132 +1,187 @@
 "use strict";
-const DATA_LOCATION = "/data/";
+const STATE_GUESSING = "STATE_GUESSING";
+const STATE_SUCCESS = "STATE_SUCCESS";
+const STATE_FAILURE = "STATE_FAILURE";
 
-const ID_WORD = "id_word";
-const ID_EXPECTED_WORD = "id_expected_word";
-const ID_GIVEN_FORM = "id_given_form";
-const ID_WANTED_FORM = "id_wanted_form";
-const ID_INFO = "id_info";
-const ID_CHECK = "id_check";
-const ID_NEXT = "id_next";
-const ID_INPUT = "id_input";
+class WordRandomizer {
+    constructor(words) {
+        this._words = words;
+        this._lastWordIndex = null;
+    }
 
-const ID_SUCCESS = "id_success";
-const ID_FAILURE = "id_failure";
+    _randomInt(lowerThan) {
+        return Math.floor(Math.random() * lowerThan);
+    }
 
-const ID_SUCCESS_COUNT = "id_success_count";
-const ID_FAILURE_COUNT = "id_failure_count";
+    nextWord() {
+        let wordIndex = null;
+        while(wordIndex === this._lastWordIndex || wordIndex === null) {
+            wordIndex = this._randomInt(this._words.length);
+        }
+        this._lastWordIndex = wordIndex;
 
-function byId(id) { return document.getElementById(id); }
+        const givenFormIndex = this._randomInt(this._words[wordIndex][0].length);
+
+        let wantedFormIndex = null;
+        while(wantedFormIndex === givenFormIndex || wantedFormIndex === null) {
+            wantedFormIndex = this._randomInt(this._words[wordIndex][0].length);
+        }
+
+        return [wordIndex, givenFormIndex, wantedFormIndex];
+    }
+}
+
+class PracticeStateMachine {
+    constructor(words, forms, wordRandomizer) {
+        this._wordRandomizer = wordRandomizer ?? new WordRandomizer(words);
+
+        this._words = words;
+        this._forms = forms;
+
+        this._successCount = 0;
+        this._failureCount = 0;
+
+        this._state = null;
+    }
+
+    get state() { return this._state }
+
+    get wantedWord() { return this._wantedWord }
+
+    get givenWord() { return this._givenWord }
+
+    get givenForm() { return this._givenForm }
+
+    get wantedForm() { return this._wantedForm }
+
+    get successCount() { return this._successCount }
+
+    get failureCount() { return this._failureCount }
+
+    start() {
+        const [wordIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
+
+        this._wantedWord = this._words[wordIndex][0][wantedFormIndex];
+        this._givenWord = this._words[wordIndex][0][givenFormIndex];
+        this._wantedForm = this._forms[wantedFormIndex];
+        this._givenForm = this._forms[givenFormIndex];
+
+        this._state = STATE_GUESSING;
+    }
+
+    guess(word) {
+        if(word.toLowerCase() === this._wantedWord.toLowerCase()) {
+            this._state = STATE_SUCCESS;
+            this._successCount++;
+        } else {
+            this._state = STATE_FAILURE;
+            this._failureCount++;
+        }
+    }
+}
 
 class Practice {
     constructor(dataFile) {
+        const DATA_LOCATION = "/data/";
         this.dataFile = DATA_LOCATION + dataFile;
+    }
+
+    setControls() {
+        function byId(id) { return document.getElementById(id); }
+
+        this.sGivenWord = byId("id_word");
+        this.sWantedWord = byId("id_expected_word");
+        this.sGivenForm = byId("id_given_form");
+        this.sWantedForm = byId("id_wanted_form");
+        this.bCheck = byId("id_check");
+        this.bNext = byId("id_next");
+        this.iInput = byId("id_input");
+
+        this.dSuccess = byId("id_success");
+        this.dFailure = byId("id_failure");
+
+        this.sSuccessCount = byId("id_success_count");
+        this.sFailureCount = byId("id_failure_count");
     }
 
     start() {
         fetch(this.dataFile)
             .then(data => {return data.json()})
             .then(json => {
-                this.successCount = 0;
-                this.failureCount = 0;
-                this.words = json["list"];
-                this.forms = json["metadata"]["forms"];
-                this.infoField = json["metadata"]["info"];
+                this.stateMachine = new PracticeStateMachine(json["list"], json["metadata"]["forms"]);
+                this.stateMachine.start();
 
+                this.setControls();
                 this.setEventListeners();
-                this.startRound();
+                this.adaptControlsToState();
             });
     }
 
     setEventListeners() {
         const checkInputHandler = () => { this.handleInput() };
-        byId(ID_CHECK).addEventListener("click", checkInputHandler);
-        byId(ID_NEXT).addEventListener("click", () => { this.startRound() });
-        byId(ID_INPUT).addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                byId(ID_CHECK).click();
+        this.bCheck.addEventListener("click", checkInputHandler);
+        this.iInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter" && this.stateMachine.state === STATE_GUESSING) {
+                this.bCheck.click();
             }
+        });
+        this.bNext.addEventListener("click", () => {
+            this.stateMachine.start();
+            this.adaptControlsToState();
         });
     }
 
-    randomInt(lowerThan) {
-        return Math.floor(Math.random() * lowerThan);
-    }
-
-    getRandomQuestion() {
-        // TODO Make sure the questions are not repeated
-        const wordIndex = this.randomInt(this.words.length);
-        const givenFormIndex = this.randomInt(this.forms.length);
-        let wantedFormIndex = this.randomInt(this.forms.length);
-
-        if(givenFormIndex === wantedFormIndex) {
-            wantedFormIndex = (wantedFormIndex + 1) % this.forms.length;
-        }
-
-        const wantedForm = this.forms[wantedFormIndex];
-        const givenForm = this.forms[givenFormIndex];
-        // TODO This is ugly, reorganize the code
-        const word = this.words[wordIndex][0];
-        const wordData = {
-            [wantedForm]: word[wantedFormIndex],
-            [givenForm]: word[givenFormIndex]
-        }
-
-        console.log(wordData);
-
-        return [wordData, wantedForm, givenForm];
-    }
-
-    startRound() {
-        const [ word, givenForm, wantedForm ] = this.getRandomQuestion();
-        this.wantedWord = word[wantedForm];
-
-        this.fillWordData(word, givenForm, wantedForm);
-    }
-
     handleInput() {
-        const word = byId(ID_INPUT).value;
+        const word = this.iInput.value.trim();
 
         if(word == "") {
-            byId(ID_INPUT).focus();
+            this.iInput.focus();
             return;
         }
 
-        if(word.toLowerCase() === this.wantedWord.toLowerCase()) {
-            byId(ID_SUCCESS).removeAttribute("hidden");
-            this.successCount++;
-        } else {
-            byId(ID_FAILURE).removeAttribute("hidden");
-            this.failureCount++;
-        }
-
-        byId(ID_INPUT).setAttribute("readonly", true);
-        byId(ID_NEXT).removeAttribute("hidden");
-        byId(ID_CHECK).setAttribute("hidden", true);
-
-        byId(ID_SUCCESS_COUNT).innerText = this.successCount;
-        byId(ID_FAILURE_COUNT).innerText = this.failureCount;
-
-        byId(ID_NEXT).focus();
+        this.stateMachine.guess(word);
+        this.adaptControlsToState();
     }
 
-    fillWordData(wordData, givenForm, wantedForm) {
-        byId(ID_WORD).innerText = wordData[givenForm];
-        byId(ID_EXPECTED_WORD).innerText = wordData[wantedForm];
-        byId(ID_GIVEN_FORM).innerText = givenForm;
-        byId(ID_WANTED_FORM).innerText = wantedForm;
-        byId(ID_INFO).innerText = wordData[this.infoField];
-        byId(ID_INPUT).value = "";
-        byId(ID_INPUT).placeholder = wantedForm;
+    adaptControlsToState() {
+        if(this.stateMachine.state === STATE_GUESSING) {
+            this.bNext.setAttribute("hidden", true);
+            this.bCheck.removeAttribute("hidden");
 
-        byId(ID_SUCCESS).setAttribute("hidden", true);
-        byId(ID_FAILURE).setAttribute("hidden", true);
+            this.iInput.value = "";
+            this.iInput.removeAttribute("readonly");
+            this.iInput.placeholder = this.stateMachine.wantedForm;
 
-        byId(ID_CHECK).removeAttribute("hidden");
-        byId(ID_NEXT).setAttribute("hidden", true);
-        byId(ID_INPUT).removeAttribute("readonly");
+            this.dFailure.setAttribute("hidden", true);
+            this.dSuccess.setAttribute("hidden", true);
 
-        byId(ID_INPUT).focus();
+            this.sGivenForm.innerText = this.stateMachine.givenForm;
+            this.sGivenWord.innerText = this.stateMachine.givenWord;
+
+            this.iInput.focus();
+            return;
+        }
+
+        if(this.stateMachine.state === STATE_SUCCESS || this.stateMachine.state === STATE_FAILURE) {
+            this.bNext.removeAttribute("hidden");
+            this.bCheck.setAttribute("hidden", true);
+
+            this.iInput.setAttribute("readonly", true);
+
+            this.sSuccessCount.innerText = this.stateMachine.successCount;
+            this.sFailureCount.innerText = this.stateMachine.failureCount;
+
+            this.bNext.focus();
+        }
+
+        if(this.stateMachine.state === STATE_SUCCESS) {
+            this.dSuccess.removeAttribute("hidden");
+        } else if(this.stateMachine.state === STATE_FAILURE) {
+            this.sWantedForm.innerText = this.stateMachine.wantedForm;
+            this.sWantedWord.innerText = this.stateMachine.wantedWord;
+
+            this.dFailure.removeAttribute("hidden");
+        }
     }
 }
 
