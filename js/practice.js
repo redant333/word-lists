@@ -93,6 +93,7 @@ class Practice {
         this.sWantedWord = byId("id_expected_word");
         this.sGivenForm = byId("id_given_form");
         this.sWantedForm = byId("id_wanted_form");
+        this.sWantedFormFailure = byId("id_wanted_form_failure");
         this.bCheck = byId("id_check");
         this.bNext = byId("id_next");
         this.iInput = byId("id_input");
@@ -157,6 +158,7 @@ class Practice {
 
             this.sGivenForm.innerText = this.stateMachine.givenForm;
             this.sGivenWord.innerText = this.stateMachine.givenWord;
+            this.sWantedForm.innerText = this.stateMachine.wantedForm;
 
             this.iInput.focus();
             return;
@@ -177,7 +179,7 @@ class Practice {
         if(this.stateMachine.state === STATE_SUCCESS) {
             this.dSuccess.removeAttribute("hidden");
         } else if(this.stateMachine.state === STATE_FAILURE) {
-            this.sWantedForm.innerText = this.stateMachine.wantedForm;
+            this.sWantedFormFailure.innerText = this.stateMachine.wantedForm;
             this.sWantedWord.innerText = this.stateMachine.wantedWord;
 
             this.dFailure.removeAttribute("hidden");
