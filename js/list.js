@@ -1,7 +1,7 @@
 "use strict";
 
 function listData(tableId, dataFile) {
-    dataFile = "./data/" + dataFile;
+    dataFile = "/word-lists/data/" + dataFile;
 
     fetch(dataFile)
     .then(data => {return data.json()})

@@ -82,7 +82,7 @@ class PracticeStateMachine {
 
 class Practice {
     constructor(dataFile) {
-        const DATA_LOCATION = "./data/";
+        const DATA_LOCATION = "/word-lists/data/";
         this.dataFile = DATA_LOCATION + dataFile;
     }
 
