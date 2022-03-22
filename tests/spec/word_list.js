@@ -1,12 +1,17 @@
 "use strict";
 
 // Suite
-describe("Word list", function() {
+describe("Word lists", function() {
     const wordLists = [
-        "/data/verb.json",
+        "/word-lists/data/verb.json",
+        "/word-lists/data/manader.json",
     ]
 
-    for (const wordList of wordLists) {its(wordList) };
+    for (const wordList of wordLists) {
+        describe(wordList, function() {
+            its(wordList)
+        });
+    };
 });
 
 // Tests
