@@ -5,6 +5,7 @@ describe("Word lists", function() {
     const wordLists = [
         "/word-lists/data/verb.json",
         "/word-lists/data/manader.json",
+        "/word-lists/data/dagar.json",
     ]
 
     for (const wordList of wordLists) {
