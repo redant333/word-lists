@@ -32,11 +32,12 @@ class WordRandomizer {
 }
 
 class PracticeStateMachine {
-    constructor(words, forms, wordRandomizer) {
+    constructor(words, forms, infos, wordRandomizer) {
         this._wordRandomizer = wordRandomizer ?? new WordRandomizer(words);
 
         this._words = words;
         this._forms = forms;
+        this._infos = infos;
 
         this._successCount = 0;
         this._failureCount = 0;
@@ -47,6 +48,10 @@ class PracticeStateMachine {
     get state() { return this._state }
 
     get wantedWord() { return this._wantedWord }
+
+    get wantedWordAllInfos() { return this._wantedWordAllInfos }
+
+    get wantedWordAllForms() { return this._wantedWordAllForms }
 
     get givenWord() { return this._givenWord }
 
@@ -62,6 +67,17 @@ class PracticeStateMachine {
         const [wordIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
 
         this._wantedWord = this._words[wordIndex][0][wantedFormIndex];
+
+        this._wantedWordAllForms = [];
+        for (let i = 0; i < this._forms.length; i++) {
+            this._wantedWordAllForms.push([this._forms[i], this._words[wordIndex][0][i]]);
+        }
+
+        this._wantedWordAllInfos = [];
+        for (let i = 0; i < this._infos.length; i++) {
+            this._wantedWordAllInfos.push([this._infos[i], this._words[wordIndex][1][i]]);
+        }
+
         this._givenWord = this._words[wordIndex][0][givenFormIndex];
         this._wantedForm = this._forms[wantedFormIndex];
         this._givenForm = this._forms[givenFormIndex];
@@ -103,13 +119,18 @@ class Practice {
 
         this.sSuccessCount = byId("id_success_count");
         this.sFailureCount = byId("id_failure_count");
+
+        this.dAllForms = byId("id_all_forms");
+        this.dAllInfos = byId("id_all_infos");
     }
 
     start() {
         fetch(this.dataFile)
             .then(data => {return data.json()})
             .then(json => {
-                this.stateMachine = new PracticeStateMachine(json["list"], json["metadata"]["forms"]);
+                this.stateMachine = new PracticeStateMachine(json["list"],
+                                                             json["metadata"]["forms"],
+                                                             json["metadata"]["infos"]);
                 this.stateMachine.start();
 
                 this.setControls();
@@ -144,6 +165,14 @@ class Practice {
         this.adaptControlsToState();
     }
 
+    _createReferenceTableRow(name, value) {
+        return `
+        <div class="row border-top pt-2 m-0">
+            <div class="col-auto h2 fw-bold">${name}</div>
+            <div class="col h2 text-end">${value}</div>
+        </div>`;
+    }
+
     adaptControlsToState() {
         if(this.stateMachine.state === STATE_GUESSING) {
             this.bNext.setAttribute("hidden", true);
@@ -160,6 +189,9 @@ class Practice {
             this.sGivenWord.innerText = this.stateMachine.givenWord;
             this.sWantedForm.innerText = this.stateMachine.wantedForm;
 
+            this.dAllForms.setAttribute("hidden", true);
+            this.dAllInfos.setAttribute("hidden", true)
+
             this.iInput.focus();
             return;
         }
@@ -172,6 +204,18 @@ class Practice {
 
             this.sSuccessCount.innerText = this.stateMachine.successCount;
             this.sFailureCount.innerText = this.stateMachine.failureCount;
+
+            this.dAllInfos.innerHTML = "";
+            for (const [info, value] of this.stateMachine.wantedWordAllInfos) {
+                this.dAllInfos.innerHTML += this._createReferenceTableRow(info, value);
+            }
+            this.dAllInfos.removeAttribute("hidden");
+
+            this.dAllForms.innerHTML = "";
+            for (const [form, value] of this.stateMachine._wantedWordAllForms) {
+                this.dAllForms.innerHTML += this._createReferenceTableRow(form, value);
+            }
+            this.dAllForms.removeAttribute("hidden");
 
             this.bNext.focus();
         }

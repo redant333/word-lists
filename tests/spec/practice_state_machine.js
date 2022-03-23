@@ -15,7 +15,7 @@ describe("PracticeStateMachine", function() {
 
     beforeEach(() => {
         randomizer = new WordRandomizer(SIMPLE_DATA.words);
-        stateMachine = new PracticeStateMachine(SIMPLE_DATA.words, SIMPLE_DATA.forms, randomizer);
+        stateMachine = new PracticeStateMachine(SIMPLE_DATA.words, SIMPLE_DATA.forms, SIMPLE_DATA.infos, randomizer);
     });
 
     it("should be in state null before starting", function() {
@@ -37,6 +37,8 @@ describe("PracticeStateMachine", function() {
         expect(stateMachine.givenWord).toBe(SIMPLE_DATA.words[wordIndex][0][givenForm]);
         expect(stateMachine.givenForm).toBe(SIMPLE_DATA.forms[givenForm]);
         expect(stateMachine.wantedForm).toBe(SIMPLE_DATA.forms[wantedForm]);
+        expect(stateMachine.wantedWordAllForms).toEqual([["f1", "wf11"], ["f2", "wf12"]]);
+        expect(stateMachine.wantedWordAllInfos).toEqual([["i1", "wi11"], ["i2", "wi12"]]);
     });
 
     it("should be in state STATE_SUCCESS after a correct guess", function() {
