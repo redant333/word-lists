@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "forms": ["infinitiv", "imperativ", "presens", "preterium", "supinum"],
-        "infos": ["eng"]
+        "forms": ["Infinitiv", "Imperativ", "Presens", "Preterium", "Supinum"],
+        "infos": ["English"]
     },
     "list": [
         [["acceptera","acceptera","accepterar","accepterade","accepterat"],["accept"]],

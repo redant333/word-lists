@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "forms": ["nummer", "veckodag"],
-        "infos": ["eng"]
+        "forms": ["Number", "Day"],
+        "infos": ["English"]
     },
     "list": [
         [["1","måndag"],["Monday"]],

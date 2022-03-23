@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "forms": ["nummer", "månad"],
-        "infos": ["eng"]
+        "forms": ["Number", "Month"],
+        "infos": ["English"]
     },
     "list": [
         [["1","januari"],["January"]],
