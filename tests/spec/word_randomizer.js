@@ -3,6 +3,10 @@ describe("WordRandomizer", function() {
         [["wf11", "wf12"], ["wi11", "wi12", "wi13"]],
         [["wf21", "wf22"], ["wi21", "wi22", "wi23"]],
     ];
+    const wordsWithDash = [
+        [["-", "wf12"], ["wi11", "wi12", "wi13"]],
+        [["wf21", "wf22"], ["wi21", "wi22", "wi23"]],
+    ];
     const checkCount = 10000;
 
     it("should return values in valid range", function() {
@@ -61,5 +65,13 @@ describe("WordRandomizer", function() {
         }
 
         expect(values.size).toBe(words[0][0].length);
+    });
+
+    it("should never select dash as given form", function() {
+        const randomizer = new WordRandomizer(wordsWithDash);
+        for (let _ = 0; _ < checkCount; _++) {
+            const [wordIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            expect(wordsWithDash[wordIndex][0][givenFormIndex]).not.toEqual("-");
+        }
     });
 });

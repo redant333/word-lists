@@ -20,7 +20,10 @@ class WordRandomizer {
         }
         this._lastWordIndex = wordIndex;
 
-        const givenFormIndex = this._randomInt(this._words[wordIndex][0].length);
+        let givenFormIndex = null;
+        while(givenFormIndex === null || this._words[wordIndex][0][givenFormIndex] === "-") {
+            givenFormIndex = this._randomInt(this._words[wordIndex][0].length);
+        }
 
         let wantedFormIndex = null;
         while(wantedFormIndex === givenFormIndex || wantedFormIndex === null) {
