@@ -30,7 +30,12 @@ class WordRandomizer {
             wantedFormIndex = this._randomInt(this._words[wordIndex][0].length);
         }
 
-        return [wordIndex, givenFormIndex, wantedFormIndex];
+        let wordSubIndex = null;
+        if(this._words[wordIndex][0][givenFormIndex] instanceof Array) {
+            wordSubIndex = this._randomInt(this._words[wordIndex][0][givenFormIndex].length);
+        }
+
+        return [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex];
     }
 }
 
@@ -67,7 +72,7 @@ class PracticeStateMachine {
     get failureCount() { return this._failureCount }
 
     start() {
-        const [wordIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
+        const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
 
         this._wantedWord = this._words[wordIndex][0][wantedFormIndex];
 

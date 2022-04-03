@@ -28,8 +28,8 @@ describe("PracticeStateMachine", function() {
     });
 
     it("should set word properties after starting", function() {
-        const [wordIndex, givenForm, wantedForm] = [0, 0, 1];
-        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, givenForm, wantedForm]);
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [0, null, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
 
         stateMachine.start();
 
@@ -42,8 +42,8 @@ describe("PracticeStateMachine", function() {
     });
 
     it("should be in state STATE_SUCCESS after a correct guess", function() {
-        const [wordIndex, givenForm, wantedForm] = [0, 0, 1];
-        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, givenForm, wantedForm]);
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [0, null, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
 
         stateMachine.start();
         stateMachine.guess(SIMPLE_DATA.words[wordIndex][0][wantedForm]);
@@ -52,8 +52,8 @@ describe("PracticeStateMachine", function() {
     });
 
     it("should be in state STATE_FAILURE after an incorrect guess", function() {
-        const [wordIndex, givenForm, wantedForm] = [0, 0, 1];
-        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, givenForm, wantedForm]);
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [0, null, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
 
         stateMachine.start();
         stateMachine.guess("wrong_guess");
@@ -62,8 +62,8 @@ describe("PracticeStateMachine", function() {
     });
 
     it("should increase success count on a correct guess", function() {
-        const [wordIndex, givenForm, wantedForm] = [0, 0, 1];
-        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, givenForm, wantedForm]);
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [0, null, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
 
         stateMachine.start();
         stateMachine.guess(SIMPLE_DATA.words[wordIndex][0][wantedForm]);
@@ -77,8 +77,8 @@ describe("PracticeStateMachine", function() {
     });
 
     it("should increase failure count on an incorrect guess", function() {
-        const [wordIndex, givenForm, wantedForm] = [0, 0, 1];
-        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, givenForm, wantedForm]);
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [0, null, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
 
         stateMachine.start();
         stateMachine.guess("wrong_guess");
