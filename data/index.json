@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Verb forms (big list)",
+        "description": "A list with 391 verb in infinitiv, imperativ, presens, preterium and supinum. The list contains most of the verbs from <a class=\"link-primary\" target=\"_blank\" href=\"http://www.asinger.net/svenska_verb_lista.pdf\">this table</a>.",
+        "list_name": "verb.json"
+    },
+    {
+        "title": "Months of the year",
+        "description": "A list of month names and numbers representing their order. Match the month name with its number.",
+        "list_name": "manader.json"
+    },
+    {
+        "title": "Days of the week",
+        "description": "A list of days and numbers representing their order. Match the day name with its number. Note that the Swedish week begins on Monday.",
+        "list_name": "dagar.json"
+    }
+]
