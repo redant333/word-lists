@@ -1,5 +1,6 @@
 "use strict";
 
+/* exported listData */
 function listData(tableId, dataFile) {
     dataFile = "/word-lists/data/" + dataFile;
 
@@ -36,7 +37,6 @@ function fillTable(tableId, json) {
     for (const word of json.list) {
         const tr = document.createElement("tr");
         tbody.appendChild(tr);
-        let x = 5;
 
         for(let formInfo of word.flat()) {
             const td = document.createElement("td");

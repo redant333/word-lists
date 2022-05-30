@@ -19,7 +19,7 @@ describe("WordRandomizer", function() {
     it("should return values in valid range", function() {
         const randomizer = new WordRandomizer(words);
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [wordIndex,, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
 
             expect(wordIndex).toBeLessThan(words.length);
             expect(givenFormIndex).toBeLessThan(words[0][0].length);
@@ -32,7 +32,7 @@ describe("WordRandomizer", function() {
         let lastWordIndex = null;
 
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [wordIndex,,,] = randomizer.nextWord();
             expect(wordIndex).not.toBe(lastWordIndex);
             lastWordIndex = wordIndex;
         }
@@ -43,7 +43,7 @@ describe("WordRandomizer", function() {
         const randomizer = new WordRandomizer(words);
 
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [wordIndex] = randomizer.nextWord();
             values.add(wordIndex);
         }
 
@@ -55,7 +55,7 @@ describe("WordRandomizer", function() {
         const randomizer = new WordRandomizer(words);
 
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [,, givenFormIndex] = randomizer.nextWord();
             values.add(givenFormIndex);
         }
 
@@ -67,7 +67,7 @@ describe("WordRandomizer", function() {
         const randomizer = new WordRandomizer(words);
 
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [,,, wantedFormIndex] = randomizer.nextWord();
             values.add(wantedFormIndex);
         }
 
@@ -77,7 +77,7 @@ describe("WordRandomizer", function() {
     it("should never select dash as given form", function() {
         const randomizer = new WordRandomizer(wordsWithDash);
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [wordIndex,, givenFormIndex] = randomizer.nextWord();
             expect(wordsWithDash[wordIndex][0][givenFormIndex]).not.toEqual("-");
         }
     });
@@ -85,7 +85,7 @@ describe("WordRandomizer", function() {
     it("should return null as word subindex if given word has only one version", function() {
         const randomizer = new WordRandomizer(words);
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [, wordSubIndex,] = randomizer.nextWord();
 
             expect(wordSubIndex).toBe(null);
         }
@@ -94,7 +94,7 @@ describe("WordRandomizer", function() {
     it("should return valid word subindex if given word has multiple versions", function() {
         const randomizer = new WordRandomizer(wordsWithMultipleVersions);
         for (let _ = 0; _ < checkCount; _++) {
-            const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = randomizer.nextWord();
+            const [wordIndex, wordSubIndex, givenFormIndex] = randomizer.nextWord();
 
             expect(wordSubIndex).not.toBe(null);
             expect(wordSubIndex).toBeLessThan(wordsWithMultipleVersions[wordIndex][0][givenFormIndex].length);

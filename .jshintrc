@@ -1,12 +1,14 @@
 {
     "esversion": 6,
     "browser": true,
+    "unused": true,
     "strict": "global",
     "globals": {
         "WordRandomizer": true,
         "PracticeStateMachine": true,
         "STATE_GUESSING": true,
         "STATE_SUCCESS": true,
-        "STATE_FAILURE": true
+        "STATE_FAILURE": true,
+        "loadListEntries": true
     }
 }

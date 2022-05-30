@@ -46,13 +46,13 @@ function its(wordList) {
     });
 
     it(wordList + " should should have correct number of forms for each word", function() {
-        for (const [wordForms, _] of words) {
+        for (const [wordForms] of words) {
             expect(wordForms.length).toBe(forms.length, wordForms);
         }
     });
 
     it(wordList + " should should have correct number of infos for each word", function() {
-        for (const [_, wordInfos] of words) {
+        for (const [, wordInfos] of words) {
             expect(wordInfos.length).toBe(infos.length, wordInfos);
         }
     });

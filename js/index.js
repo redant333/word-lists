@@ -13,6 +13,7 @@ function createWordListEntryNode(title, description, listName) {
     return entryNode;
 }
 
+/* exported loadListEntries */
 function loadListEntries(containerId) {
     fetch("/word-lists/data/index.json")
     .then(data => {return data.json(); })

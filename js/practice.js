@@ -72,7 +72,7 @@ class PracticeStateMachine {
     get failureCount() { return this._failureCount; }
 
     start() {
-        const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
+        const [wordIndex,, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
 
         this._wantedWord = this._words[wordIndex][0][wantedFormIndex];
 
@@ -104,6 +104,7 @@ class PracticeStateMachine {
     }
 }
 
+/* exported Practice */
 class Practice {
     constructor(dataFile) {
         const DATA_LOCATION = "/word-lists/data/";
