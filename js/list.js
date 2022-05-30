@@ -27,22 +27,15 @@ function addHeader(table, columns) {
 
 function fillTable(tableId, json) {
     const table = document.getElementById(tableId);
-    const columns = ["#", ...json["metadata"]["forms"], ...json["metadata"]["infos"]];
+    const columns = [...json["metadata"]["forms"], ...json["metadata"]["infos"]];
     addHeader(table, columns);
 
     const tbody = document.createElement("tbody");
     table.appendChild(tbody);
 
-    const words = json["list"];
-    let row = 1;
-    for (const word of words) {
+    for (const word of json["list"]) {
         const tr = document.createElement("tr");
         tbody.appendChild(tr);
-
-        const th = document.createElement("th");
-        th.setAttribute("scope", "row");
-        th.innerText = row;
-        tr.appendChild(th);
 
         for(let formInfo of word.flat()) {
             const td = document.createElement("td");
@@ -50,6 +43,5 @@ function fillTable(tableId, json) {
             tr.appendChild(td);
         }
 
-        row++;
     }
 }
