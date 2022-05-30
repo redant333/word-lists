@@ -4,7 +4,7 @@ function listData(tableId, dataFile) {
     dataFile = "/word-lists/data/" + dataFile;
 
     fetch(dataFile)
-    .then(data => {return data.json()})
+    .then(data => {return data.json();})
     .then(json => {
         fillTable(tableId, json);
     });
@@ -27,15 +27,16 @@ function addHeader(table, columns) {
 
 function fillTable(tableId, json) {
     const table = document.getElementById(tableId);
-    const columns = [...json["metadata"]["forms"], ...json["metadata"]["infos"]];
+    const columns = [...json.metadata.forms, ...json.metadata.infos];
     addHeader(table, columns);
 
     const tbody = document.createElement("tbody");
     table.appendChild(tbody);
 
-    for (const word of json["list"]) {
+    for (const word of json.list) {
         const tr = document.createElement("tr");
         tbody.appendChild(tr);
+        let x = 5;
 
         for(let formInfo of word.flat()) {
             const td = document.createElement("td");

@@ -6,13 +6,15 @@ describe("Word lists", function() {
         "/word-lists/data/verb.json",
         "/word-lists/data/manader.json",
         "/word-lists/data/dagar.json",
-    ]
+    ];
 
+    // jshint -W083
     for (const wordList of wordLists) {
         describe(wordList, function() {
-            its(wordList)
+            its(wordList);
         });
-    };
+    }
+    // jshint +W083
 });
 
 // Tests
@@ -24,9 +26,9 @@ function its(wordList) {
     beforeEach(async () => {
         const data = await fetch(wordList);
         const json = await data.json();
-        words = json["list"];
-        forms = json["metadata"]["forms"];
-        infos = json["metadata"]["infos"];
+        words = json.list;
+        forms = json.metadata.forms;
+        infos = json.metadata.infos;
     });
 
     it(wordList + " should contain at least two words", function() {

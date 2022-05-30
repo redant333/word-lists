@@ -15,11 +15,11 @@ function createWordListEntryNode(title, description, listName) {
 
 function loadListEntries(containerId) {
     fetch("/word-lists/data/index.json")
-    .then(data => {return data.json()})
+    .then(data => {return data.json(); })
     .then(json => {
         const container = document.getElementById(containerId);
         for (const entry of json) {
-            const entryNode = createWordListEntryNode(entry["title"], entry["description"], entry["list_name"]);
+            const entryNode = createWordListEntryNode(entry.title, entry.description, entry.list_name);
             container.appendChild(entryNode);
         }
     });

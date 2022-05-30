@@ -41,7 +41,7 @@ class WordRandomizer {
 
 class PracticeStateMachine {
     constructor(words, forms, infos, wordRandomizer) {
-        this._wordRandomizer = wordRandomizer ?? new WordRandomizer(words);
+        this._wordRandomizer = wordRandomizer ? wordRandomizer : new WordRandomizer(words);
 
         this._words = words;
         this._forms = forms;
@@ -53,23 +53,23 @@ class PracticeStateMachine {
         this._state = null;
     }
 
-    get state() { return this._state }
+    get state() { return this._state; }
 
-    get wantedWord() { return this._wantedWord }
+    get wantedWord() { return this._wantedWord; }
 
-    get wantedWordAllInfos() { return this._wantedWordAllInfos }
+    get wantedWordAllInfos() { return this._wantedWordAllInfos; }
 
-    get wantedWordAllForms() { return this._wantedWordAllForms }
+    get wantedWordAllForms() { return this._wantedWordAllForms; }
 
-    get givenWord() { return this._givenWord }
+    get givenWord() { return this._givenWord; }
 
-    get givenForm() { return this._givenForm }
+    get givenForm() { return this._givenForm; }
 
-    get wantedForm() { return this._wantedForm }
+    get wantedForm() { return this._wantedForm; }
 
-    get successCount() { return this._successCount }
+    get successCount() { return this._successCount; }
 
-    get failureCount() { return this._failureCount }
+    get failureCount() { return this._failureCount; }
 
     start() {
         const [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
@@ -134,11 +134,11 @@ class Practice {
 
     start() {
         fetch(this.dataFile)
-            .then(data => {return data.json()})
+            .then(data => {return data.json();})
             .then(json => {
-                this.stateMachine = new PracticeStateMachine(json["list"],
-                                                             json["metadata"]["forms"],
-                                                             json["metadata"]["infos"]);
+                this.stateMachine = new PracticeStateMachine(json.list,
+                                                             json.metadata.forms,
+                                                             json.metadata.infos);
                 this.stateMachine.start();
 
                 this.setControls();
@@ -148,7 +148,7 @@ class Practice {
     }
 
     setEventListeners() {
-        const checkInputHandler = () => { this.handleInput() };
+        const checkInputHandler = () => { this.handleInput(); };
         this.bCheck.addEventListener("click", checkInputHandler);
         this.iInput.addEventListener("keyup", (event) => {
             if (event.key === "Enter" && this.stateMachine.state === STATE_GUESSING) {
@@ -198,7 +198,7 @@ class Practice {
             this.sWantedForm.innerText = this.stateMachine.wantedForm;
 
             this.dAllForms.setAttribute("hidden", true);
-            this.dAllInfos.setAttribute("hidden", true)
+            this.dAllInfos.setAttribute("hidden", true);
 
             this.iInput.focus();
             return;

@@ -7,7 +7,7 @@ const SIMPLE_DATA = {
         [["wf11", "wf12"],["wi11", "wi12"]],
         [["wf21", "wf22"],["wi21", "wi22"]],
     ]
-}
+};
 
 describe("PracticeStateMachine", function() {
     let randomizer = null;

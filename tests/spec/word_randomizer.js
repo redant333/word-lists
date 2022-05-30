@@ -1,3 +1,5 @@
+"use strict";
+
 describe("WordRandomizer", function() {
     const words = [
         [["wf11", "wf12"], ["wi11", "wi12", "wi13"]],
