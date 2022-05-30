@@ -165,7 +165,7 @@ class Practice {
     handleInput() {
         const word = this.iInput.value.trim();
 
-        if(word == "") {
+        if(word === "") {
             this.iInput.focus();
             return;
         }

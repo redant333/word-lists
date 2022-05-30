@@ -3,6 +3,7 @@
     "browser": true,
     "unused": true,
     "camelcase": true,
+    "eqeqeq": true,
     "strict": "global",
     "globals": {
         "WordRandomizer": true,
