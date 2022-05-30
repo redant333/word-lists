@@ -2,6 +2,7 @@
     "esversion": 6,
     "browser": true,
     "unused": true,
+    "camelcase": true,
     "strict": "global",
     "globals": {
         "WordRandomizer": true,
