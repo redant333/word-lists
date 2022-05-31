@@ -6,6 +6,7 @@ const SIMPLE_DATA = {
     words: [
         [["wf11", "wf12"],["wi11", "wi12"]],
         [["wf21", "wf22"],["wi21", "wi22"]],
+        [[["wf31_1", "wf31_2"], ["wf32_1", "wf32_2"]],["wi31", "wi32"]],
     ]
 };
 
@@ -33,12 +34,27 @@ describe("PracticeStateMachine", function() {
 
         stateMachine.start();
 
-        expect(stateMachine.wantedWord).toBe(SIMPLE_DATA.words[wordIndex][0][wantedForm]);
-        expect(stateMachine.givenWord).toBe(SIMPLE_DATA.words[wordIndex][0][givenForm]);
-        expect(stateMachine.givenForm).toBe(SIMPLE_DATA.forms[givenForm]);
-        expect(stateMachine.wantedForm).toBe(SIMPLE_DATA.forms[wantedForm]);
-        expect(stateMachine.wantedWordAllForms).toEqual([["f1", "wf11"], ["f2", "wf12"]]);
+        expect(stateMachine.wantedWords).toEqual(["wf12"]);
+        expect(stateMachine.givenWord).toEqual("wf11");
+        expect(stateMachine.givenForm).toEqual("f1");
+        expect(stateMachine.wantedForm).toEqual("f2");
+        expect(stateMachine.wantedWordAllForms).toEqual([["f1", ["wf11"]], ["f2", ["wf12"]]]);
         expect(stateMachine.wantedWordAllInfos).toEqual([["i1", "wi11"], ["i2", "wi12"]]);
+    });
+
+
+    it("should set word properties after starting when word has multiple form versions", function() {
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [2, 1, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
+
+        stateMachine.start();
+
+        expect(stateMachine.wantedWords).toEqual(["wf32_1", "wf32_2"]);
+        expect(stateMachine.givenWord).toEqual("wf31_2");
+        expect(stateMachine.givenForm).toEqual("f1");
+        expect(stateMachine.wantedForm).toEqual("f2");
+        expect(stateMachine.wantedWordAllForms).toEqual([["f1", ["wf31_1", "wf31_2"]], ["f2", ["wf32_1", "wf32_2"]]]);
+        expect(stateMachine.wantedWordAllInfos).toEqual([["i1", "wi31"], ["i2", "wi32"]]);
     });
 
     it("should be in state STATE_SUCCESS after a correct guess", function() {
@@ -47,6 +63,16 @@ describe("PracticeStateMachine", function() {
 
         stateMachine.start();
         stateMachine.guess(SIMPLE_DATA.words[wordIndex][0][wantedForm]);
+
+        expect(stateMachine.state).toBe(STATE_SUCCESS);
+    });
+
+    it("should be in state STATE_SUCCESS after a correct guess when word has multiple form versions", function() {
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [2, 1, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
+
+        stateMachine.start();
+        stateMachine.guess("wf32_2");
 
         expect(stateMachine.state).toBe(STATE_SUCCESS);
     });

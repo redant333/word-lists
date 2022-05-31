@@ -55,7 +55,7 @@ class PracticeStateMachine {
 
     get state() { return this._state; }
 
-    get wantedWord() { return this._wantedWord; }
+    get wantedWords() { return this._wantedWords; }
 
     get wantedWordAllInfos() { return this._wantedWordAllInfos; }
 
@@ -72,13 +72,13 @@ class PracticeStateMachine {
     get failureCount() { return this._failureCount; }
 
     start() {
-        const [wordIndex,, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
+        const [wordIndex, givenFormSubIndex, givenFormIndex, wantedFormIndex] = this._wordRandomizer.nextWord();
 
-        this._wantedWord = this._words[wordIndex][0][wantedFormIndex];
+        this._wantedWords = [this._words[wordIndex][0][wantedFormIndex]].flat();
 
         this._wantedWordAllForms = [];
         for (let i = 0; i < this._forms.length; i++) {
-            this._wantedWordAllForms.push([this._forms[i], this._words[wordIndex][0][i]]);
+            this._wantedWordAllForms.push([this._forms[i], [this._words[wordIndex][0][i]].flat()]);
         }
 
         this._wantedWordAllInfos = [];
@@ -86,7 +86,12 @@ class PracticeStateMachine {
             this._wantedWordAllInfos.push([this._infos[i], this._words[wordIndex][1][i]]);
         }
 
-        this._givenWord = this._words[wordIndex][0][givenFormIndex];
+        if(givenFormSubIndex !== null) {
+            this._givenWord = this._words[wordIndex][0][givenFormIndex][givenFormSubIndex];
+        } else {
+            this._givenWord = this._words[wordIndex][0][givenFormIndex];
+        }
+
         this._wantedForm = this._forms[wantedFormIndex];
         this._givenForm = this._forms[givenFormIndex];
 
@@ -94,7 +99,9 @@ class PracticeStateMachine {
     }
 
     guess(word) {
-        if(word.toLowerCase() === this._wantedWord.toLowerCase()) {
+        const wantedWordsLowercase = this._wantedWords.map((w) => w.toLowerCase());
+
+        if(wantedWordsLowercase.includes(word.toLowerCase())) {
             this._state = STATE_SUCCESS;
             this._successCount++;
         } else {
@@ -233,7 +240,7 @@ class Practice {
             this.dSuccess.removeAttribute("hidden");
         } else if(this.stateMachine.state === STATE_FAILURE) {
             this.sWantedFormFailure.innerText = this.stateMachine.wantedForm;
-            this.sWantedWord.innerText = this.stateMachine.wantedWord;
+            this.sWantedWord.innerText = this.stateMachine.wantedWords;
 
             this.dFailure.removeAttribute("hidden");
         }
