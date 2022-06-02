@@ -3,7 +3,7 @@
 // Suite
 describe("Word lists", function() {
     const wordLists = [
-        "/word-lists/data/verb.json",
+        "/word-lists/data/verbs.json",
         "/word-lists/data/months.json",
         "/word-lists/data/days.json",
         "/word-lists/data/numbers.json",
