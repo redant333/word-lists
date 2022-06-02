@@ -13,5 +13,10 @@
         "title": "Days of the week",
         "description": "A list of days and numbers representing their order. Match the day name with its number. Note that the Swedish week begins on Monday.",
         "list_name": "dagar.json"
+    },
+    {
+        "title": "Numbers",
+        "description": "A list of numbers 1-100. Match the ordinal number with its cardinal version.",
+        "list_name": "numbers.json"
     }
 ]

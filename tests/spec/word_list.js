@@ -6,6 +6,7 @@ describe("Word lists", function() {
         "/word-lists/data/verb.json",
         "/word-lists/data/manader.json",
         "/word-lists/data/dagar.json",
+        "/word-lists/data/numbers.json",
     ];
 
     // jshint -W083
