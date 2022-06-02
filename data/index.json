@@ -7,12 +7,12 @@
     {
         "title": "Months of the year",
         "description": "A list of month names and numbers representing their order. Match the month name with its number.",
-        "list_name": "manader.json"
+        "list_name": "months.json"
     },
     {
         "title": "Days of the week",
         "description": "A list of days and numbers representing their order. Match the day name with its number. Note that the Swedish week begins on Monday.",
-        "list_name": "dagar.json"
+        "list_name": "days.json"
     },
     {
         "title": "Numbers",

@@ -4,8 +4,8 @@
 describe("Word lists", function() {
     const wordLists = [
         "/word-lists/data/verb.json",
-        "/word-lists/data/manader.json",
-        "/word-lists/data/dagar.json",
+        "/word-lists/data/months.json",
+        "/word-lists/data/days.json",
         "/word-lists/data/numbers.json",
     ];
 
