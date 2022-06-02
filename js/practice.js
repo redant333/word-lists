@@ -182,11 +182,13 @@ class Practice {
     }
 
     _createReferenceTableRow(name, value) {
-        return `
-        <div class="row border-top pt-2 m-0">
-            <div class="col-auto h2 fw-bold">${name}</div>
-            <div class="col h2 text-end">${value}</div>
-        </div>`;
+        const template = document.getElementById("id_reference_table_row");
+        const node = template.content.cloneNode(true);
+
+        node.querySelector(".data-name").innerText = name;
+        node.querySelector(".data-value").innerText = value;
+
+        return node;
     }
 
     adaptControlsToState() {
@@ -223,13 +225,13 @@ class Practice {
 
             this.dAllInfos.innerHTML = "";
             for (const [info, value] of this.stateMachine.wantedWordAllInfos) {
-                this.dAllInfos.innerHTML += this._createReferenceTableRow(info, value);
+                this.dAllInfos.appendChild(this._createReferenceTableRow(info, value));
             }
             this.dAllInfos.removeAttribute("hidden");
 
             this.dAllForms.innerHTML = "";
             for (const [form, value] of this.stateMachine._wantedWordAllForms) {
-                this.dAllForms.innerHTML += this._createReferenceTableRow(form, value);
+                this.dAllForms.appendChild(this._createReferenceTableRow(form, value));
             }
             this.dAllForms.removeAttribute("hidden");
 
