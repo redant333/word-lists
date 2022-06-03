@@ -1,7 +1,8 @@
 "use strict";
+/* globals getAmbiguousWords */
 
 // Suite
-describe("Word lists", function() {
+describe("Word lists", () => {
     const wordLists = [
         "/word-lists/data/verbs.json",
         "/word-lists/data/months.json",
@@ -12,7 +13,7 @@ describe("Word lists", function() {
 
     // jshint -W083
     for (const wordList of wordLists) {
-        describe(wordList, function() {
+        describe(wordList, () => {
             its(wordList);
         });
     }
@@ -33,29 +34,35 @@ function its(wordList) {
         infos = json.metadata.infos;
     });
 
-    it(wordList + " should contain at least two words", function() {
+    it(wordList + " should contain at least two words", () => {
         expect(words.length).toBeGreaterThanOrEqual(2);
     });
 
-    it(wordList + " should contain at least two forms", function() {
+    it(wordList + " should contain at least two forms", () => {
         expect(words.length).toBeGreaterThanOrEqual(2);
     });
 
-    it(wordList + " should should have infos and forms for each word", function() {
+    it(wordList + " should have infos and forms for each word", () => {
         for (const word of words) {
             expect(word.length).toBe(2, word);
         }
     });
 
-    it(wordList + " should should have correct number of forms for each word", function() {
+    it(wordList + " should have correct number of forms for each word", () => {
         for (const [wordForms] of words) {
-            expect(wordForms.length).toBe(forms.length, wordForms);
+            expect(wordForms.length).toBe(forms.length);
         }
     });
 
-    it(wordList + " should should have correct number of infos for each word", function() {
+    it(wordList + " should have correct number of infos for each word", () => {
         for (const [, wordInfos] of words) {
-            expect(wordInfos.length).toBe(infos.length, wordInfos);
+            expect(wordInfos.length).toBe(infos.length);
         }
+    });
+
+    it(wordList + " should not have ambiguous words", () => {
+        let ambiguousWords = getAmbiguousWords(words);
+        expect(ambiguousWords).withContext(`Full list of ambiguous words is [${Array.from(ambiguousWords)}]\n`)
+                              .toEqual(new Set());
     });
 }
