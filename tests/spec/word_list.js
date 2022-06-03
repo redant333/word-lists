@@ -7,6 +7,7 @@ describe("Word lists", function() {
         "/word-lists/data/months.json",
         "/word-lists/data/days.json",
         "/word-lists/data/numbers.json",
+        "/word-lists/data/pronouns.json",
     ];
 
     // jshint -W083
