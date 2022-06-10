@@ -38,6 +38,21 @@ describe("WordRandomizer", function() {
         }
     });
 
+    it("should never return a word that is listed in ambiguous words", function() {
+        const excludedGivenWords = ["wf11"];
+        const randomizer = new WordRandomizer(words, excludedGivenWords);
+        let values = new Set();
+
+        for (let _ = 0; _ < checkCount; _++) {
+            const [wordIndex,,givenFormIndex,] = randomizer.nextWord();
+            values.add(words[wordIndex][0][givenFormIndex]);
+        }
+
+        for (const word of excludedGivenWords) {
+            expect(values).not.toContain(word);
+        }
+    });
+
     it("should return all valid values for word index", function() {
         let values = new Set();
         const randomizer = new WordRandomizer(words);

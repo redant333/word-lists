@@ -3,17 +3,27 @@ const STATE_GUESSING = "STATE_GUESSING";
 const STATE_SUCCESS = "STATE_SUCCESS";
 const STATE_FAILURE = "STATE_FAILURE";
 
+function maybeIndex(arr, index) {
+    let indexed = arr[index];
+    if (indexed !== undefined) {
+        return indexed;
+    } else {
+        return arr;
+    }
+}
+
 class WordRandomizer {
-    constructor(words) {
+    constructor(words, excludedGivenWords) {
         this._words = words;
         this._lastWordIndex = null;
+        this._excludedGivenWords = excludedGivenWords ? excludedGivenWords : [];
     }
 
     _randomInt(lowerThan) {
         return Math.floor(Math.random() * lowerThan);
     }
 
-    nextWord() {
+    _getRandomWord() {
         let wordIndex = null;
         while(wordIndex === this._lastWordIndex || wordIndex === null) {
             wordIndex = this._randomInt(this._words.length);
@@ -37,11 +47,25 @@ class WordRandomizer {
 
         return [wordIndex, wordSubIndex, givenFormIndex, wantedFormIndex];
     }
+
+    nextWord() {
+        let wordSpec = null;
+        let givenWord = null;
+
+        do {
+            wordSpec = this._getRandomWord();
+
+            const [wordIndex, wordSubIndex, givenFormIndex] = wordSpec;
+            givenWord = maybeIndex(this._words[wordIndex][0][givenFormIndex], wordSubIndex);
+        } while (this._excludedGivenWords.includes(givenWord));
+
+        return wordSpec;
+    }
 }
 
 class PracticeStateMachine {
-    constructor(words, forms, infos, wordRandomizer) {
-        this._wordRandomizer = wordRandomizer ? wordRandomizer : new WordRandomizer(words);
+    constructor(words, forms, infos, excludedGivenWords, wordRandomizer) {
+        this._wordRandomizer = wordRandomizer ? wordRandomizer : new WordRandomizer(words, excludedGivenWords);
 
         this._words = words;
         this._forms = forms;
@@ -86,11 +110,7 @@ class PracticeStateMachine {
             this._wantedWordAllInfos.push([this._infos[i], this._words[wordIndex][1][i]]);
         }
 
-        if(givenFormSubIndex !== null) {
-            this._givenWord = this._words[wordIndex][0][givenFormIndex][givenFormSubIndex];
-        } else {
-            this._givenWord = this._words[wordIndex][0][givenFormIndex];
-        }
+        this._givenWord = maybeIndex(this._words[wordIndex][0][givenFormIndex], givenFormSubIndex);
 
         this._wantedForm = this._forms[wantedFormIndex];
         this._givenForm = this._forms[givenFormIndex];
@@ -146,7 +166,8 @@ class Practice {
             .then(json => {
                 this.stateMachine = new PracticeStateMachine(json.list,
                                                              json.metadata.forms,
-                                                             json.metadata.infos);
+                                                             json.metadata.infos,
+                                                             json.metadata.excludedGivenWords);
                 this.stateMachine.start();
 
                 this.setControls();

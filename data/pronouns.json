@@ -1,7 +1,8 @@
 {
     "metadata": {
         "forms": ["Nominative", "Objective", "Possesive"],
-        "infos": ["Person"]
+        "infos": ["Person"],
+        "excludedGivenWords": ["dess"]
     },
     "list": [
         [["jag","mig",["min","mitt","mina"]],["1st person singular"]],

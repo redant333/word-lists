@@ -25,6 +25,7 @@ function its(wordList) {
     let words = null;
     let forms = null;
     let infos = null;
+    let excludedGivenWords = [];
 
     beforeEach(async () => {
         const data = await fetch(wordList);
@@ -32,6 +33,10 @@ function its(wordList) {
         words = json.list;
         forms = json.metadata.forms;
         infos = json.metadata.infos;
+
+        if("excludedGivenWords" in json.metadata) {
+            excludedGivenWords = json.metadata.excludedGivenWords;
+        }
     });
 
     it(wordList + " should contain at least two words", () => {
@@ -60,9 +65,15 @@ function its(wordList) {
         }
     });
 
-    it(wordList + " should not have ambiguous words", () => {
+    it(wordList + " should have all ambiguous words listed", () => {
         let ambiguousWords = getAmbiguousWords(words);
-        expect(ambiguousWords).withContext(`Full list of ambiguous words is [${Array.from(ambiguousWords)}]\n`)
-                              .toEqual(new Set());
+
+        expect(ambiguousWords).toBeInstanceOf(Set);
+
+        for (const ambiguousWord of ambiguousWords) {
+            expect(excludedGivenWords)
+                .withContext(`Full list of ambiguous words is [${Array.from(ambiguousWords)}]\n`)
+                .toContain(ambiguousWord);
+        }
     });
 }

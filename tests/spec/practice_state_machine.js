@@ -16,7 +16,7 @@ describe("PracticeStateMachine", function() {
 
     beforeEach(() => {
         randomizer = new WordRandomizer(SIMPLE_DATA.words);
-        stateMachine = new PracticeStateMachine(SIMPLE_DATA.words, SIMPLE_DATA.forms, SIMPLE_DATA.infos, randomizer);
+        stateMachine = new PracticeStateMachine(SIMPLE_DATA.words, SIMPLE_DATA.forms, SIMPLE_DATA.infos, null, randomizer);
     });
 
     it("should be in state null before starting", function() {
