@@ -15,6 +15,11 @@
         "list_name": "days.json"
     },
     {
+        "title": "Pronouns",
+        "description": "A list of pronouns in subject, object and possessive form.",
+        "list_name": "pronouns.json"
+    },
+    {
         "title": "Verb forms (big list)",
         "description": "A list with 395 verbs in infinitiv, imperativ, presens, preterium and supinum. The list is based on <a class=\"link-primary\" target=\"_blank\" href=\"http://www.asinger.net/svenska_verb_lista.pdf\">this table</a>.",
         "list_name": "verbs.json"
