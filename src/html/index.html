@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @@include('elements/head_elements.html')
+    <title>WordLists</title>
+</head>
+<body>
+    <template id="id_word_list_entry">
+        <div class="row">
+            <div class="col p-0 pb-3">
+                <div class="container bg-light rounded border p-3 pt-2 pb-2">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a class="h5 link-primary text-decoration-none data-title data-link" href="/word-lists/practice.html?">Verb forms (big list)</a>
+                        </div>
+                        <div class="col-auto">
+                            <a class="link-primary text-decoration-none h5 data-link" href="/word-lists/list.html?">View list</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col data-description"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div class="container" id="id_main_container">
+        @@include('./elements/navbar.html')
+
+        <div class="row">
+            <div class="col p-0 pb-3">
+                <div class="container bg-light rounded border p-3 pt-2 pb-2">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <h3 class="text-danger">
+                                <i class="fa-solid fa-person-digging"></i>
+                                <span>Work in progress</span>
+                                <i class="fa-solid fa-person-digging"></i>
+                            </h3>
+                            <span>
+                                Hello! The work on this site is still in progress, but feel free to use it.
+                                Whatever is here should work, but possibly with a few hickups or inaccuracies.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3>Swedish word lists</h3>
+        </div>
+
+    <script>
+        loadListEntries("id_main_container");
+    </script>
+</body>
+</html>

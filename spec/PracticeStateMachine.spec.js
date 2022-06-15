@@ -6,7 +6,7 @@ const {
     STATE_FAILURE,
     WordRandomizer,
     PracticeStateMachine
-} = require("../js/practice");
+} = require("../src/js/practice");
 
 const SIMPLE_DATA = {
     forms: ["f1", "f2"],

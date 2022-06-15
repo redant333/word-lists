@@ -1,6 +1,6 @@
 "use strict";
 
-const WordRandomizer = require("../js/practice").WordRandomizer;
+const WordRandomizer = require("../src/js/practice").WordRandomizer;
 
 describe("WordRandomizer", function() {
     const words = [

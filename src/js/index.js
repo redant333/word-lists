@@ -21,7 +21,7 @@ function loadListEntries(containerId) {
         const container = document.getElementById(containerId);
         for (const entry of json) {
             // jshint -W106
-            const entryNode = createWordListEntryNode(entry.title, entry.description, entry.list_name); // jshint +W106
+            const entryNode = createWordListEntryNode(entry.title, entry.description, entry.listName); // jshint +W106
             container.appendChild(entryNode);
         }
     });
