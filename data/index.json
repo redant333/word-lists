@@ -2,26 +2,26 @@
     {
         "title": "Numbers",
         "description": "A list of numbers 1-100. Match the ordinal number with its cardinal version.",
-        "list_name": "numbers.json"
+        "listName": "numbers.json"
     },
     {
         "title": "Months of the year",
         "description": "A list of month names and numbers representing their order. Match the month name with its number.",
-        "list_name": "months.json"
+        "listName": "months.json"
     },
     {
         "title": "Days of the week",
         "description": "A list of days and numbers representing their order. Match the day name with its number. Note that the Swedish week begins on Monday.",
-        "list_name": "days.json"
+        "listName": "days.json"
     },
     {
         "title": "Pronouns",
         "description": "A list of pronouns in subject, object and possessive form.",
-        "list_name": "pronouns.json"
+        "listName": "pronouns.json"
     },
     {
         "title": "Verb forms (big list)",
         "description": "A list with 395 verbs in infinitiv, imperativ, presens, preterium and supinum. The list is based on <a class=\"link-primary\" target=\"_blank\" href=\"http://www.asinger.net/svenska_verb_lista.pdf\">this table</a>.",
-        "list_name": "verbs.json"
+        "listName": "verbs.json"
     }
 ]

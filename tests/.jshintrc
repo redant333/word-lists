@@ -1,5 +1,0 @@
-{
-    "extends": "../.jshintrc",
-    "esversion": 11, // Test code is not executed by users so compatibility is not problematic
-    "jasmine": true
-}

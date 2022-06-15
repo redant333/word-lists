@@ -1,5 +1,6 @@
 "use strict";
-/* globals getAmbiguousWords */
+
+const getAmbiguousWords = require("./utils");
 
 describe("getAmbiguousWords", () => {
     it("should return empty set when there are no ambigous words", () => {

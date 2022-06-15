@@ -270,4 +270,14 @@ class Practice {
     }
 }
 
-
+/* For testing purposes */
+if(typeof module !== 'undefined') {
+    /* global module */
+    module.exports = {
+        STATE_GUESSING,
+        STATE_SUCCESS,
+        STATE_FAILURE,
+        WordRandomizer,
+        PracticeStateMachine,
+    };
+}

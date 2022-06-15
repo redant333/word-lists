@@ -1,0 +1,7 @@
+{
+    "extends": "../.jshintrc",
+    "esversion": 11, // Test code is not executed by users so compatibility is not an issue
+    "browser": false,
+    "jasmine": true,
+    "node": true
+}

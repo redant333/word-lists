@@ -1,5 +1,13 @@
 "use strict";
 
+const {
+    STATE_GUESSING,
+    STATE_SUCCESS,
+    STATE_FAILURE,
+    WordRandomizer,
+    PracticeStateMachine
+} = require("../js/practice");
+
 const SIMPLE_DATA = {
     forms: ["f1", "f2"],
     infos: ["i1", "i2"],
@@ -11,6 +19,7 @@ const SIMPLE_DATA = {
 };
 
 describe("PracticeStateMachine", function() {
+
     let randomizer = null;
     let stateMachine = null;
 

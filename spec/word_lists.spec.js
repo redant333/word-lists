@@ -1,23 +1,19 @@
 "use strict";
-/* globals getAmbiguousWords */
+
+const getAmbiguousWords = require("./utils/utils");
 
 // Suite
 describe("Word lists", () => {
-    const wordLists = [
-        "/word-lists/data/verbs.json",
-        "/word-lists/data/months.json",
-        "/word-lists/data/days.json",
-        "/word-lists/data/numbers.json",
-        "/word-lists/data/pronouns.json",
-    ];
+    const wordListIndex = require("../data/index.json");
 
-    // jshint -W083
-    for (const wordList of wordLists) {
-        describe(wordList, () => {
-            its(wordList);
+    for (const wordList of wordListIndex) {
+        const jsonName = wordList.listName;
+        // jshint -W083
+        describe(jsonName, () => {
+            its(`../data/${jsonName}`);
         });
+        // jshint +W083
     }
-    // jshint +W083
 });
 
 // Tests
@@ -28,44 +24,43 @@ function its(wordList) {
     let excludedGivenWords = [];
 
     beforeEach(async () => {
-        const data = await fetch(wordList);
-        const json = await data.json();
+        const json = require(wordList);
         words = json.list;
         forms = json.metadata.forms;
         infos = json.metadata.infos;
 
-        if("excludedGivenWords" in json.metadata) {
+        if ("excludedGivenWords" in json.metadata) {
             excludedGivenWords = json.metadata.excludedGivenWords;
         }
     });
 
-    it(wordList + " should contain at least two words", () => {
+    it("should contain at least two words", () => {
         expect(words.length).toBeGreaterThanOrEqual(2);
     });
 
-    it(wordList + " should contain at least two forms", () => {
+    it("should contain at least two forms", () => {
         expect(words.length).toBeGreaterThanOrEqual(2);
     });
 
-    it(wordList + " should have infos and forms for each word", () => {
+    it("should have infos and forms for each word", () => {
         for (const word of words) {
             expect(word.length).toBe(2, word);
         }
     });
 
-    it(wordList + " should have correct number of forms for each word", () => {
+    it("should have correct number of forms for each word", () => {
         for (const [wordForms] of words) {
             expect(wordForms.length).toBe(forms.length);
         }
     });
 
-    it(wordList + " should have correct number of infos for each word", () => {
+    it("should have correct number of infos for each word", () => {
         for (const [, wordInfos] of words) {
             expect(wordInfos.length).toBe(infos.length);
         }
     });
 
-    it(wordList + " should have all ambiguous words listed", () => {
+    it("should have all ambiguous words listed", () => {
         let ambiguousWords = getAmbiguousWords(words);
 
         expect(ambiguousWords).toBeInstanceOf(Set);

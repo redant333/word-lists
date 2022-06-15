@@ -35,3 +35,5 @@ function getAmbiguousWords(words) {
 
     return ambiguousWords;
 }
+
+module.exports = getAmbiguousWords;
