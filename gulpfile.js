@@ -18,7 +18,7 @@ function defaultTask(cb) {
     src("src/js/*.js")
         .pipe(uglify())
         .pipe(concat("minified.js"))
-        .pipe(dest("word-lists"));
+        .pipe(dest("."));
 
     // Resolve includes and minify HTML
     const htmlFiles = [
@@ -29,12 +29,12 @@ function defaultTask(cb) {
     src(htmlFiles)
         .pipe(fileinclude())
         .pipe(htmlmin(htmlminConfig))
-        .pipe(dest("word-lists"));
+        .pipe(dest("."));
 
     // Minify JSON
-    src("data/*json")
+    src("src/data/*json")
         .pipe(jsonminify())
-        .pipe(dest("word-lists/data"))
+        .pipe(dest("./data"))
 
     cb();
 }

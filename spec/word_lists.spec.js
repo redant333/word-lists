@@ -4,13 +4,13 @@ const getAmbiguousWords = require("./utils/utils");
 
 // Suite
 describe("Word lists", () => {
-    const wordListIndex = require("../data/index.json");
+    const wordListIndex = require("../src/data/index.json");
 
     for (const wordList of wordListIndex) {
         const jsonName = wordList.listName;
         // jshint -W083
         describe(jsonName, () => {
-            its(`../data/${jsonName}`);
+            its(`../src/data/${jsonName}`);
         });
         // jshint +W083
     }

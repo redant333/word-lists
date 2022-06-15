@@ -1,15 +1,1 @@
-{
-    "metadata": {
-        "forms": ["Number", "Day"],
-        "infos": ["English"]
-    },
-    "list": [
-        [["1","måndag"],["Monday"]],
-        [["2","tisdag"],["Tuesday"]],
-        [["3","onsdag"],["Wednesday"]],
-        [["4","torsdag"],["Thursday"]],
-        [["5","fredag"],["Friday"]],
-        [["6","lördag"],["Saturday"]],
-        [["7","söndag"],["Sunday"]]
-    ]
-}
+{"metadata":{"forms":["Number","Day"],"infos":["English"]},"list":[[["1","måndag"],["Monday"]],[["2","tisdag"],["Tuesday"]],[["3","onsdag"],["Wednesday"]],[["4","torsdag"],["Thursday"]],[["5","fredag"],["Friday"]],[["6","lördag"],["Saturday"]],[["7","söndag"],["Sunday"]]]}
