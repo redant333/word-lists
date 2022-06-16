@@ -1,5 +1,10 @@
 {
     "files.exclude": {
-        "node_modules": true
+        "node_modules": true,
+        "minified.js": true,
+        "index.html": true,
+        "list.html": true,
+        "practice.html": true,
+        "data": true
     }
 }
