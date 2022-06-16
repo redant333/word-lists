@@ -1,7 +1,7 @@
 "use strict";
-const STATE_GUESSING = "STATE_GUESSING";
-const STATE_SUCCESS = "STATE_SUCCESS";
-const STATE_FAILURE = "STATE_FAILURE";
+export const STATE_GUESSING = "STATE_GUESSING";
+export const STATE_SUCCESS = "STATE_SUCCESS";
+export const STATE_FAILURE = "STATE_FAILURE";
 
 function maybeIndex(arr, index) {
     let indexed = arr[index];
@@ -12,7 +12,7 @@ function maybeIndex(arr, index) {
     }
 }
 
-class WordRandomizer {
+export class WordRandomizer {
     constructor(words, excludedGivenWords) {
         this._words = words;
         this._lastWordIndex = null;
@@ -63,7 +63,7 @@ class WordRandomizer {
     }
 }
 
-class PracticeStateMachine {
+export class PracticeStateMachine {
     constructor(words, forms, infos, excludedGivenWords, wordRandomizer) {
         this._wordRandomizer = wordRandomizer ? wordRandomizer : new WordRandomizer(words, excludedGivenWords);
 
@@ -132,7 +132,7 @@ class PracticeStateMachine {
 }
 
 /* exported Practice */
-class Practice {
+export default class Practice {
     constructor(dataFile) {
         const DATA_LOCATION = "/word-lists/data/";
         this.dataFile = DATA_LOCATION + dataFile;
@@ -268,16 +268,4 @@ class Practice {
             this.dFailure.removeAttribute("hidden");
         }
     }
-}
-
-/* For testing purposes */
-if(typeof module !== 'undefined') {
-    /* global module */
-    module.exports = {
-        STATE_GUESSING,
-        STATE_SUCCESS,
-        STATE_FAILURE,
-        WordRandomizer,
-        PracticeStateMachine,
-    };
 }

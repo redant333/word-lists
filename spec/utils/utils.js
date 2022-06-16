@@ -22,8 +22,8 @@ function getAmbiguousWordsForForm(words, formIndex) {
     return ambiguousWords;
 }
 
-/* exported getAmbiguousWords */
-function getAmbiguousWords(words) {
+
+export function getAmbiguousWords(words) {
     let ambiguousWords = new Set();
 
     let formCount = words[0][0].length;
@@ -35,5 +35,3 @@ function getAmbiguousWords(words) {
 
     return ambiguousWords;
 }
-
-module.exports = getAmbiguousWords;

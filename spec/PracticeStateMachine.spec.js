@@ -1,12 +1,12 @@
 "use strict";
 
-const {
+import {
     STATE_GUESSING,
     STATE_SUCCESS,
     STATE_FAILURE,
     WordRandomizer,
     PracticeStateMachine
-} = require("../src/js/practice");
+} from "../src/js/practice.js";
 
 const SIMPLE_DATA = {
     forms: ["f1", "f2"],

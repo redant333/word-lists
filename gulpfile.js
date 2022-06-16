@@ -1,10 +1,9 @@
-const gulp = require("gulp");
+import gulp from "gulp";
 const {src, dest} = gulp;
-const uglify = require("gulp-uglify");
-const concat = require('gulp-concat');
-const fileinclude = require('gulp-file-include');
-const htmlmin = require('gulp-htmlmin')
-const jsonminify = require('gulp-jsonminify');
+import fileinclude from 'gulp-file-include';
+import htmlmin from 'gulp-htmlmin';
+import jsonminify from 'gulp-jsonminify';
+import webpack from 'webpack-stream';
 
 const htmlminConfig = {
     collapseWhitespace: true,
@@ -15,9 +14,8 @@ const htmlminConfig = {
 
 function defaultTask(cb) {
     // Minify and concatenate JavaScript
-    src("src/js/*.js")
-        .pipe(uglify())
-        .pipe(concat("minified.js"))
+    src("src/js/entry.js")
+        .pipe(webpack({mode: "production", output: {filename: "./minified.js"}}))
         .pipe(dest("."));
 
     // Resolve includes and minify HTML
@@ -39,4 +37,4 @@ function defaultTask(cb) {
     cb();
 }
 
-exports.default = defaultTask
+export { defaultTask as default };

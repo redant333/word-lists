@@ -1,16 +1,22 @@
 "use strict";
 
-const getAmbiguousWords = require("./utils/utils");
+import { getAmbiguousWords } from "./utils/utils.js";
+import * as fs from 'fs';
+
+function readJSON(path) {
+    let data = fs.readFileSync(path);
+    return JSON.parse(data);
+}
 
 // Suite
 describe("Word lists", () => {
-    const wordListIndex = require("../src/data/index.json");
+    const wordListIndex = readJSON("src/data/index.json");
 
     for (const wordList of wordListIndex) {
         const jsonName = wordList.listName;
         // jshint -W083
         describe(jsonName, () => {
-            its(`../src/data/${jsonName}`);
+            its(`src/data/${jsonName}`);
         });
         // jshint +W083
     }
@@ -24,7 +30,7 @@ function its(wordList) {
     let excludedGivenWords = [];
 
     beforeEach(async () => {
-        const json = require(wordList);
+        const json = readJSON(wordList);
         words = json.list;
         forms = json.metadata.forms;
         infos = json.metadata.infos;

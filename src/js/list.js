@@ -1,7 +1,6 @@
 "use strict";
 
-/* exported listData */
-function listData(tableId, dataFile) {
+export default function listData(tableId, dataFile) {
     dataFile = "/word-lists/data/" + dataFile;
 
     fetch(dataFile)

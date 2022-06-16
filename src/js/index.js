@@ -13,15 +13,13 @@ function createWordListEntryNode(title, description, listName) {
     return entryNode;
 }
 
-/* exported loadListEntries */
-function loadListEntries(containerId) {
+export default function loadListEntries(containerId) {
     fetch("/word-lists/data/index.json")
     .then(data => {return data.json(); })
     .then(json => {
         const container = document.getElementById(containerId);
         for (const entry of json) {
-            // jshint -W106
-            const entryNode = createWordListEntryNode(entry.title, entry.description, entry.listName); // jshint +W106
+            const entryNode = createWordListEntryNode(entry.title, entry.description, entry.listName);
             container.appendChild(entryNode);
         }
     });

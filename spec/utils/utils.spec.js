@@ -1,6 +1,6 @@
 "use strict";
 
-const getAmbiguousWords = require("./utils");
+import { getAmbiguousWords } from "./utils.js";
 
 describe("getAmbiguousWords", () => {
     it("should return empty set when there are no ambigous words", () => {
