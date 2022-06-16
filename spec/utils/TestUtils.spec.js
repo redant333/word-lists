@@ -1,6 +1,6 @@
 "use strict";
 
-import { getAmbiguousWords } from "./utils.js";
+import { getAmbiguousWords } from "./TestUtils.js";
 
 describe("getAmbiguousWords", () => {
     it("should return empty set when there are no ambigous words", () => {

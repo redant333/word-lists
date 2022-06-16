@@ -14,7 +14,7 @@ const htmlminConfig = {
 
 function defaultTask(cb) {
     // Minify and concatenate JavaScript
-    src("src/js/entry.js")
+    src("src/js/WordListsLoader.js")
         .pipe(webpack({mode: "production", output: {filename: "./minified.js"}}))
         .pipe(dest("."));
 

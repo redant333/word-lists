@@ -4,9 +4,8 @@ import {
     STATE_GUESSING,
     STATE_SUCCESS,
     STATE_FAILURE,
-    WordRandomizer,
     PracticeStateMachine
-} from "../src/js/practice.js";
+} from "../src/js/PracticeStateMachine.js";
 
 const SIMPLE_DATA = {
     forms: ["f1", "f2"],
@@ -24,7 +23,7 @@ describe("PracticeStateMachine", function() {
     let stateMachine = null;
 
     beforeEach(() => {
-        randomizer = new WordRandomizer(SIMPLE_DATA.words);
+        randomizer = {nextWord : () => {}};
         stateMachine = new PracticeStateMachine(SIMPLE_DATA.words, SIMPLE_DATA.forms, SIMPLE_DATA.infos, null, randomizer);
     });
 
@@ -33,6 +32,9 @@ describe("PracticeStateMachine", function() {
     });
 
     it("should be in state STATE_GUESSING after starting", function() {
+        const [wordIndex, wordSubIndex, givenForm, wantedForm] = [2, 1, 0, 1];
+        spyOn(randomizer, "nextWord").and.returnValue([wordIndex, wordSubIndex, givenForm, wantedForm]);
+
         stateMachine.start();
         expect(stateMachine.state).toBe(STATE_GUESSING);
     });

@@ -1,6 +1,6 @@
 "use strict";
 
-import { getAmbiguousWords } from "./utils/utils.js";
+import { getAmbiguousWords } from "./utils/TestUtils.js";
 import * as fs from 'fs';
 
 function readJSON(path) {

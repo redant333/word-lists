@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "dbaeumer.jshint"
+        "dbaeumer.jshint",
+        "hbenl.vscode-jasmine-test-adapter"
     ]
 }
