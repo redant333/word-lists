@@ -1,8 +1,13 @@
 [
     {
-        "title": "Numbers",
-        "description": "A list of numbers 1-100. Match the ordinal number with its cardinal version.",
-        "listName": "numbers.json"
+        "title": "Numbers up to 20",
+        "description": "Practice cardinal and ordinal numbers.",
+        "listName": "numbers20.json"
+    },
+    {
+        "title": "Numbers up to 100",
+        "description": "Practice cardinal and ordinal numbers.",
+        "listName": "numbers100.json"
     },
     {
         "title": "Months of the year",
