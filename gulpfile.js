@@ -12,12 +12,12 @@ const htmlminConfig = {
     minifyJS: true,
 }
 
-const jsFiles = ["src/js/WordListsLoader.js"];
+const jsFiles = ["src/js/**/*.js"];
 const htmlFiles = ["src/html/index.html", "src/html/list.html", "src/html/practice.html"];
 const jsonFiles = ["src/data/*json"];
 
 function assembleJs(cb) {
-    src(jsFiles)
+    src("src/js/WordListsLoader.js")
         .pipe(webpack({ mode: "production", output: { filename: "./minified.js" } }))
         .pipe(dest("."));
     cb();
