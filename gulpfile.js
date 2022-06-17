@@ -1,5 +1,5 @@
 import gulp from "gulp";
-const {src, dest} = gulp;
+const { src, dest, watch, parallel } = gulp;
 import fileinclude from 'gulp-file-include';
 import htmlmin from 'gulp-htmlmin';
 import jsonminify from 'gulp-jsonminify';
@@ -12,29 +12,41 @@ const htmlminConfig = {
     minifyJS: true,
 }
 
-function defaultTask(cb) {
-    // Minify and concatenate JavaScript
-    src("src/js/WordListsLoader.js")
-        .pipe(webpack({mode: "production", output: {filename: "./minified.js"}}))
-        .pipe(dest("."));
+const jsFiles = ["src/js/WordListsLoader.js"];
+const htmlFiles = ["src/html/index.html", "src/html/list.html", "src/html/practice.html"];
+const jsonFiles = ["src/data/*json"];
 
-    // Resolve includes and minify HTML
-    const htmlFiles = [
-        "src/html/index.html",
-        "src/html/list.html",
-        "src/html/practice.html",
-    ]
+function assembleJs(cb) {
+    src(jsFiles)
+        .pipe(webpack({ mode: "production", output: { filename: "./minified.js" } }))
+        .pipe(dest("."));
+    cb();
+}
+
+function assembleHtml(cb) {
     src(htmlFiles)
         .pipe(fileinclude())
         .pipe(htmlmin(htmlminConfig))
         .pipe(dest("."));
-
-    // Minify JSON
-    src("src/data/*json")
-        .pipe(jsonminify())
-        .pipe(dest("./data"))
-
     cb();
 }
 
-export { defaultTask as default };
+function minifyJson(cb) {
+    src(jsonFiles)
+        .pipe(jsonminify())
+        .pipe(dest("./data"))
+    cb();
+}
+
+function watchTask() {
+    watch(jsFiles, assembleJs);
+    watch(htmlFiles, assembleHtml);
+    watch(jsonFiles, minifyJson);
+}
+
+let defaultTask = parallel(assembleJs, assembleHtml, minifyJson);
+
+export {
+    watchTask as watch,
+    defaultTask as default
+};

@@ -4,6 +4,7 @@
   "scripts": {
     "all": "jshint . && jasmine --reporter=jasmine-console-reporter && gulp",
     "gulp": "gulp",
+    "watch": "gulp watch",
     "spec": "jasmine --reporter=jasmine-console-reporter",
     "lint": "jshint . --verbose"
   },
