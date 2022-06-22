@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "forms": ["Infinitiv","Imperativ","Presens","Preteritum","Supinum"],
+        "infos": ["English"]
+    },
+    "list": [
+        [["bero", "bero", "beror", "berodde", "berott"], ["depend on"]],
+        [["bo",   "bo",   "bor",   "bodde",   "bott"],   ["1. live\n2. stay"]],
+        [["fly",  "fly",  "flyr",  "flydde",  "flytt"],  ["flee, escape"]],
+        [["må",   "må",   "mår",   "mådde",   "mått"],   ["feel"]],
+        [["sy",   "sy",   "syr",   "sydde",   "sytt"],   ["sew"]],
+        [["tro",  "tro",  "tror",  "trodde",  "trott"],  ["believe"]]
+    ]
+}

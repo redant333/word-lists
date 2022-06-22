@@ -1,0 +1,22 @@
+{
+    "metadata": {
+        "forms": ["Infinitiv","Imperativ","Presens","Preteritum","Supinum"],
+        "infos": ["English"]
+    },
+    "list": [
+        [["behöva",   "behöv",   "behöver",   "behövde",   "behövt"],   ["need, require"]],
+        [["beställa", "beställ", "beställer", "beställde", "beställt"], ["book, reserve"]],
+        [["betyda",   "betyd",   "betyder",   "betydde",   "betytt"],   ["mean, signify"]],
+        [["bygga",    "bygg",    "bygger",    "byggde",    "byggt"],    ["build, construct"]],
+        [["följa",    "följ",    "följer",    "följde",    "följt"],    ["follow"]],
+        [["glömma",   "glöm",    "glömmer",   "glömde",    "glömt"],    ["forget"]],
+        [["hyra",     "hyr",     "hyr",       "hyrde",     "hyrt"],     ["rent, hire"]],
+        [["höra",     "hör",     "hör",       "hörde",     "hört"],     ["hear, listen"]],
+        [["känna",    "känn",    "känner",    "kände",     "känt"],     ["1. sense, feel\n2. know"]],
+        [["köra",     "kör",     "kör",       "körde",     "kört"],     ["drive"]],
+        [["lära",     "lär",     "lär",       "lärde",     "lärt"],     ["teach, learn"]],
+        [["ringa",    "ring",    "ringer",    "ringde",    "ringt"],    ["ring"]],
+        [["stänga",   "stäng",   "stänger",   "stängde",   "stängt"],   ["close, shut"]],
+        [["äga",      "äg",      "äger",      "ägde",      "ägt"],      ["own"]]
+    ]
+}

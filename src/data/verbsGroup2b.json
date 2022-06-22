@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "forms": ["Infinitiv","Imperativ","Presens","Preteritum","Supinum"],
+        "infos": ["English"]
+    },
+    "list": [
+        [["blåsa",     "blås",     "blåser",     "blåste",    "blåst"],    ["blow"]],
+        [["fortsätta", "fortsätt", "fortsätter", "fortsatte", "fortsatt"], ["continue, go on"]],
+        [["försöka",   "försök",   "försöker",   "försökte",  "försökt"],  ["try, attempt"]],
+        [["heta",      "het",      "heter",      "hette",     "hetat"],    ["be called"]],
+        [["hjälpa",    "hjälp",    "hjälper",    "hjälpte",   "hjälpt"],   ["help"]],
+        [["köpa",      "köp",      "köper",      "köpte",     "köpt"],     ["buy"]],
+        [["läsa",      "läs",      "läser",      "läste",     "läst"],     ["1. read\n2. study"]],
+        [["resa",      "res",      "reser",      "reste",     "rest"],     ["travel"]],
+        [["sätta",     "sätt",     "sätter",     "satte",     "satt"],     ["put, place"]],
+        [["tänka",     "tänk",     "tänker",     "tänkte",    "tänkt"],    ["think"]],
+        [["växa",      "väx",      "växer",      "växte",     "växt"],     ["grow"]],
+        [["åka",       "åk",       "åker",       "åkte",      "åkt"],      ["go, ride, drive"]]
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "metadata": {
+        "forms": ["Infinitiv","Imperativ","Presens","Preteritum","Supinum"],
+        "infos": ["English"]
+    },
+    "list": [
+        [["acceptera", "acceptera", "accepterar", "accepterade", "accepterat"], ["accept"]],
+        [["arbeta",    "arbeta",    "arbetar",    "arbetade",    "arbetat"],    ["work"]],
+        [["bada",      "bada",      "badar",      "badade",      "badat"],      ["bathe, swim"]],
+        [["baka",      "baka",      "bakar",      "bakade",      "bakat"],      ["bake"]],
+        [["betala",    "betala",    "betalar",    "betalade",    "betalat"],    ["pay"]],
+        [["börja",     "börja",     "börjar",     "började",     "börjat"],     ["begin"]],
+        [["cykla",     "cykla",     "cyklar",     "cyklade",     "cyklat"],     ["cycle"]],
+        [["dansa",     "dansa",     "dansar",     "dansade",     "dansat"],     ["dance"]],
+        [["dela",      "dela",      "delar",      "delade",      "delat"],      ["1. divide\n2. share"]],
+        [["fråga",     "fråga",     "frågar",     "frågade",     "frågat"],     ["ask"]],
+        [["fundera",   "fundera",   "funderar",   "funderade",   "funderat"],   ["think, ponder"]],
+        [["fungera",   "fungera",   "fungerar",   "fungerade",   "fungerat"],   ["work, function"]],
+        [["förklara",  "förklara",  "förklarar",  "förklarade",  "förklarat"],  ["explain"]],
+        [["gilla",     "gilla",     "gillar",     "gillade",     "gillat"],     ["like"]],
+        [["hitta",     "hitta",     "hittar",     "hittade",     "hittat"],     ["find"]],
+        [["hoppa",     "hoppa",     "hoppar",     "hoppade",     "hoppat"],     ["jump"]],
+        [["jobba",     "jobba",     "jobbar",     "jobbade",     "jobbat"],     ["work"]],
+        [["lyssna",    "lyssna",    "lyssnar",    "lyssnade",    "lyssnat"],    ["listen"]],
+        [["måla",      "måla",      "målar",      "målade",      "målat"],      ["paint"]],
+        [["prata",     "prata",     "pratar",     "pratade",     "pratat"],     ["talk"]],
+        [["simma",     "simma",     "simmar",     "simmade",     "simmat"],     ["swim"]],
+        [["skratta",   "skratta",   "skrattar",   "skrattade",   "skrattat"],   ["laugh"]],
+        [["titta",     "titta",     "tittar",     "tittade",     "tittat"],     ["see, watch"]],
+        [["vila",      "vila",      "vilar",      "vilade",      "vilat"],      ["rest"]],
+        [["öppna",     "öppna",     "öppnar",     "öppnade",     "öppnat"],     ["open"]]
+    ]
+}

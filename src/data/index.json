@@ -25,8 +25,38 @@
         "listName": "pronouns.json"
     },
     {
-        "title": "Verb forms (big list)",
-        "description": "A list with 395 verbs in infinitiv, imperativ, presens, preterium and supinum. The list is based on <a class=\"link-primary\" target=\"_blank\" href=\"http://www.asinger.net/svenska_verb_lista.pdf\">this table</a>.",
+        "title": "Verbs - Group 1",
+        "description": "These are the verbs whose infinitive and imperative are the same. They are the most common group.",
+        "listName": "verbsGroup1.json"
+    },
+    {
+        "title": "Verbs - Group 2a",
+        "description": "These are the verbs whose imperativ is obtained by removing -a from infinitive.",
+        "listName": "verbsGroup2a.json"
+    },
+    {
+        "title": "Verbs - Group 2b",
+        "description": "These verbs are similar to the ones from Group 2a, except that their imperativ ends with -p, -t, -k, -s or -x which affects the endings.",
+        "listName": "verbsGroup2b.json"
+    },
+    {
+        "title": "Verbs - Group 3",
+        "description": "Group 3 includes short, one-syllable verbs.",
+        "listName": "verbsGroup3.json"
+    },
+    {
+        "title": "Verbs - Group 4",
+        "description": "Group 4 is composed of strong and irregular (starka och oregelbundna) verbs. Their forms are not predictable.",
+        "listName": "verbsGroup4.json"
+    },
+    {
+        "title": "Verbs - All Groups",
+        "description": "This list contains all the verbs from the Group 1, Group 2a, Group 2b, Group 3 and Group 4 lists.",
+        "listName": "verbsGroup4.json"
+    },
+    {
+        "title": "Verbs - All Groups (Big List)",
+        "description": "A big list with 395 verbs in infinitiv, imperativ, presens, preterium and supinum. The list is based on <a class=\"link-primary\" target=\"_blank\" href=\"http://www.asinger.net/svenska_verb_lista.pdf\">this table</a>.",
         "listName": "verbs.json"
     }
 ]
