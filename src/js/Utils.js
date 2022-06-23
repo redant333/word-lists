@@ -8,3 +8,10 @@ export function maybeIndex(arr, index) {
         return arr;
     }
 }
+
+export function createElementWithText(elementName, text) {
+    const element = document.createElement(elementName);
+    element.innerText = text;
+
+    return element;
+}

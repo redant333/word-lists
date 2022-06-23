@@ -13,7 +13,8 @@ const htmlminConfig = {
 }
 
 const jsFiles = ["src/js/**/*.js"];
-const htmlFiles = ["src/html/index.html", "src/html/list.html", "src/html/practice.html"];
+const allHtmlFiles = ["src/html/**/*html"];
+const targetHtmlFiles = ["src/html/index.html", "src/html/list.html", "src/html/practice.html"];
 const jsonFiles = ["src/data/*json"];
 
 function assembleJs(cb) {
@@ -24,7 +25,7 @@ function assembleJs(cb) {
 }
 
 function assembleHtml(cb) {
-    src(htmlFiles)
+    src(targetHtmlFiles)
         .pipe(fileinclude())
         .pipe(htmlmin(htmlminConfig))
         .pipe(dest("."));
@@ -40,7 +41,7 @@ function minifyJson(cb) {
 
 function watchTask() {
     watch(jsFiles, assembleJs);
-    watch(htmlFiles, assembleHtml);
+    watch(allHtmlFiles, assembleHtml);
     watch(jsonFiles, minifyJson);
 }
 

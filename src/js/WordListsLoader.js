@@ -11,9 +11,7 @@ window.WordListsLoader = {
     loadPractice: function() {
         new Practice(getWordListName()).start();
     },
-    loadIndex: function(containerId) {
-        loadListEntries(containerId);
-    },
+    loadIndex: loadListEntries,
     loadList: function(containerId) {
         listData(containerId, getWordListName());
     }

@@ -5,28 +5,10 @@
     <title>WordLists</title>
 </head>
 <body>
-    <template id="id_word_list_entry">
-        <div class="row">
-            <div class="col p-0 pb-3">
-                <div class="container bg-light rounded border p-3 pt-2 pb-2">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <a class="h5 link-primary text-decoration-none data-title data-link"
-                               href="/word-lists/practice.html?"></a>
-                        </div>
-                        <div class="col-auto">
-                            <a class="h6 link-primary text-decoration-none data-link"
-                               href="/word-lists/list.html?">View list</a>
-                    </div>
-                    <div class="row">
-                        <div class="col data-description"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </template>
+    @@include('templates/index_entry.html')
+    @@include('templates/toc_entry.html')
 
-    <div class="container" id="id_main_container">
+    <div class="container pb-5" id="id_main_container">
         @@include('./elements/navbar.html')
 
         <div class="row">
@@ -49,12 +31,20 @@
             </div>
         </div>
 
-        <div class="row">
-            <h3>Swedish word lists</h3>
+        <div class="row mt-3 mb-5">
+            <div class="col-md-9">
+                <h3>Swedish word lists</h3>
+                <p>TODO Write an intro</p>
+            </div>
+            <div class="col-md-3 ps-0 pe-0">
+                <ul class="list-group list-group-bulleted" id="id_toc_container">
+                    <li class="list-group-item fw-bold">Categories:</li>
+                </ul>
+            </div>
         </div>
 
     <script>
-        WordListsLoader.loadIndex("id_main_container");
+        WordListsLoader.loadIndex("id_main_container", "id_toc_container");
     </script>
 </body>
 </html>

@@ -12,13 +12,15 @@ function readJSON(path) {
 describe("Word lists", () => {
     const wordListIndex = readJSON("src/data/index.json");
 
-    for (const wordList of wordListIndex) {
-        const jsonName = wordList.listName;
-        // jshint -W083
-        describe(jsonName, () => {
-            its(`src/data/${jsonName}`);
-        });
-        // jshint +W083
+    for (const group of wordListIndex) {
+        for (const wordList of group.lists) {
+            const jsonName = wordList.listName;
+            // jshint -W083
+            describe(jsonName, () => {
+                its(`src/data/${jsonName}`);
+            });
+            // jshint +W083
+        }
     }
 });
 
