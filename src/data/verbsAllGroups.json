@@ -67,7 +67,7 @@
 
         [["dricka",       "drick",       "dricker",   "drack",        "druckit"],         ["drink",                   "4"]],
         [["dö",           "dö",          "dör",       "dog",          "dött"],            ["die",                     "4"]],
-        [["finnas",       "-", "f        inns",       "fanns",        "funnits"],         ["be, be situated",         "4"]],
+        [["finnas",       "-",           "finns",     "fanns",        "funnits"],         ["be, be situated",         "4"]],
         [["flyga",        "flyg",        "flyger",    "flög",         "flugit"],          ["fly",                     "4"]],
         [["få",           "få",          "får",       "fick",         "fått"],            ["1. get, receive\n2. may", "4"]],
         [["förbjuda",     "förbjud",     "förbjuder", "förbjöd",      "förbjudit"],       ["forbid",                  "4"]],
@@ -77,10 +77,10 @@
         [["göra",         "gör",         "gör",       "gjorde",       "gjort"],           ["do",                      "4"]],
         [["ha",           "ha",          "har",       "hade",         "haft"],            ["have",                    "4"]],
         [["komma",        "kom",         "kommer",    "kom",          "kommit"],          ["come",                    "4"]],
-        [["kunna",        "-", "k        an",         "kunde",        "kunnat"],          ["can, know",               "4"]],
+        [["kunna",        "-",           "kan",       "kunde",        "kunnat"],          ["can, know",               "4"]],
         [["ligga",        "ligg",        "ligger",    "låg",          "legat"],           ["lie",                     "4"]],
         [["lägga",        "lägg",        "lägger",    ["la", "lade"], "lagt"],            ["put, place",              "4"]],
-        [["måste",        "-", "m        åste",       "måste",        "måst"],            ["must",                    "4"]],
+        [["måste",        "-",           "måste",     "måste",        "måst"],            ["must",                    "4"]],
         [["se",           "se",          "ser",       "såg",          "sett"],            ["see",                     "4"]],
         [["sitta",        "sitt",        "sitter",    "satt",         "suttit"],          ["sit, fit",                "4"]],
         [["sjunga",       "sjung",       "sjunger",   "sjöng",        "sjungit"],         ["sing",                    "4"]],
@@ -93,7 +93,7 @@
         [["ta",           "ta",          "tar",       "tog",          "tagit"],           ["take",                    "4"]],
         [["vara",         "var",         "är",        "var",          "varit"],           ["be",                      "4"]],
         [["veta",         "vet",         "vet",       "visste",       "vetat"],           ["know",                    "4"]],
-        [["vilja",        "-", "v        ill",        "ville",        "velat"],           ["will, want",              "4"]],
+        [["vilja",        "-",           "vill",      "ville",        "velat"],           ["will, want",              "4"]],
         [["äta",          "ät",          "äter",      "åt",           "ätit"],            ["eat",                     "4"]]
     ]
 }

@@ -6,7 +6,7 @@
     "list": [
         [["dricka",       "drick",       "dricker",   "drack",        "druckit"],         ["drink"]],
         [["dö",           "dö",          "dör",       "dog",          "dött"],            ["die"]],
-        [["finnas",       "-", "f        inns",       "fanns",        "funnits"],         ["be, be situated"]],
+        [["finnas",       "-",           "finns",     "fanns",        "funnits"],         ["be, be situated"]],
         [["flyga",        "flyg",        "flyger",    "flög",         "flugit"],          ["fly"]],
         [["få",           "få",          "får",       "fick",         "fått"],            ["1. get, receive\n2. may"]],
         [["förbjuda",     "förbjud",     "förbjuder", "förbjöd",      "förbjudit"],       ["forbid"]],
@@ -16,10 +16,10 @@
         [["göra",         "gör",         "gör",       "gjorde",       "gjort"],           ["do"]],
         [["ha",           "ha",          "har",       "hade",         "haft"],            ["have"]],
         [["komma",        "kom",         "kommer",    "kom",          "kommit"],          ["come"]],
-        [["kunna",        "-", "k        an",         "kunde",        "kunnat"],          ["can, know"]],
+        [["kunna",        "-",           "kan",       "kunde",        "kunnat"],          ["can, know"]],
         [["ligga",        "ligg",        "ligger",    "låg",          "legat"],           ["lie"]],
         [["lägga",        "lägg",        "lägger",    ["la", "lade"], "lagt"],            ["put, place"]],
-        [["måste",        "-", "m        åste",       "måste",        "måst"],            ["must"]],
+        [["måste",        "-",           "måste",     "måste",        "måst"],            ["must"]],
         [["se",           "se",          "ser",       "såg",          "sett"],            ["see"]],
         [["sitta",        "sitt",        "sitter",    "satt",         "suttit"],          ["sit, fit"]],
         [["sjunga",       "sjung",       "sjunger",   "sjöng",        "sjungit"],         ["sing"]],
@@ -32,7 +32,7 @@
         [["ta",           "ta",          "tar",       "tog",          "tagit"],           ["take"]],
         [["vara",         "var",         "är",        "var",          "varit"],           ["be"]],
         [["veta",         "vet",         "vet",       "visste",       "vetat"],           ["know"]],
-        [["vilja",        "-", "v        ill",        "ville",        "velat"],           ["will, want"]],
+        [["vilja",        "-",           "vill",      "ville",        "velat"],           ["will, want"]],
         [["äta",          "ät",          "äter",      "åt",           "ätit"],            ["eat"]]
     ]
 }
